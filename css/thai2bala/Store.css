@@ -1,0 +1,19 @@
+﻿#va-accordion {width: auto !important;height: auto !important;}
+.va-wrapper {
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+.va-slice{
+	cursor:pointer;
+	left:0px;
+	overflow:hidden;
+    height: auto !important;
+}
+#map{width: 575px ;height: 388px ;}
+#store-description { margin-left: 6px;}
+.sl-time {height: 26px; overflow: hidden; width: 240px;}
+#store-description .sl-time { height: 26px; width: 100%;}
+/*#contact #selectAdress li.province{width: 275px;}*/
+#va-accordion .location_item {padding-top: 12px;}

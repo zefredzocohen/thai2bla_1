@@ -1,0 +1,29 @@
+* Credit Card processing for US customers with Mercury (mercurypay.com)
+* New Report builder, which allows you to filter reports on many fields at once
+* Mass update for items and customers
+* E-mail alerts for inventory
+* Inventory reports now include supplier
+* Show comments on receipt
+* You can now bulk edit promo price
+* Fixed bug where e-mailed receipt didn't have comment
+* Summary customer report shows No Customer
+* Stock e-mail alert is shown for item kit, if an item in the kit is out of stock
+* Fixed bug in promo price where next year couldn't be selected
+* improvements for Bulk edit for items (Ability to select all items)
+* Fixed tax bug where if an item had 2 taxes for the same amount, they were combined on the tax report
+* Added ability to close feedback bar
+* Brought back time range sale search by popular demand
+* Removal of permissions for logged in employee is NOT possible
+* Updated installer to have e-mail setup using gmail or custom provider
+* Fixed bug when using iOS 6 and ajax requests that caused problems in sales interface
+* Out of stock alert for item kits
+* Print Receipt + Edit sale buttons
+* Better validation of language selection
+* Added Default payment type which selects the default payment type during sale and receiving
+* Add option to hide signature on receipt
+* Store URL now shows up on receipt (if it exists)
+* Can now print a receipt for a sale right from the sales report
+* It is now NOT possible to remove permissions from yourself when logged in
+* Fixed bug in iOS 6 where it caches ajax requests
+* Promo price now allows for next year
+* CodeIgniter 2.1.3

@@ -1,0 +1,294 @@
+body {
+    font-family: "Lucida Grande",Arial;
+    margin: 0;
+    padding: 0;
+}
+table {
+    border-collapse: collapse;
+}
+td {
+    border: medium none;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+}
+img{
+    border:0px; 
+}
+#page {
+    margin: 100px auto 0 auto;
+    width:1000px;
+}
+#introduce{
+    float:left;
+    width: 520px;
+    /*margin-right:50px*/
+    margin-left:50px
+}
+#form{
+    float:left;
+    margin-left:50px;
+}
+#container {
+    margin-left: auto;
+    margin-right: auto;
+    /*margin-top: 150px;*/
+    position: relative;
+    width: 380px;
+}
+.footer-inside{ 
+    padding:12px 0 0 0;
+    font-size:12px;
+    color:#444444;
+    margin:0 auto;
+}
+.fl {
+    float: left !important;
+}
+#p-footer a{
+    margin:0 5px;
+    font-weight:bold;
+    /*font-size: 12px;*/
+}
+
+a, a:active {
+    color: #476DA4;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration:underline
+}
+#top {
+    background-image: url("../images/login/login.png");
+    background-position: 0 0;
+    height: 140px;
+    text-align: center;
+}
+#top img
+{
+    position: relative;
+    top: 45px;
+}
+#form_field_username, #form_field_password, #form_field_password_confirm {
+    height: 50px;
+}
+#form_field_submit {
+    height: 60px;
+}
+#login_form {
+}
+#bottom {
+    background-image: url("../images/login/login.png");
+    background-position: left bottom;
+    color: #FFFFFF;
+    font-size: 0.7em;
+    font-weight: normal;
+    width: 380px;
+}
+#bottom td{
+    height: 30px;
+    padding: 3px 20px 0;
+    vertical-align: top;
+}
+#bottom a{
+    color:#8ac;
+    text-decoration:none;
+}
+#bottom a:hover{
+    color:#fff;
+}
+#bottom #left{
+    text-align:left;
+}
+#bottom #right{
+    text-align:right;
+}
+#welcome_message {
+    margin-bottom: 20px;
+    margin-top: 10px;
+    text-align: center;
+}
+.form_field_label {
+    background-image: url("../images/login/login.png");
+    background-position: left -140px;
+    color: #555555;
+    padding-left: 20px;
+    width: 90px;
+}
+.form_field {
+    background-image: url("../images/login/login.png");
+    background-position: right -140px;
+    padding-left: 10px;
+    width: 280px;
+}
+#submit_button {
+    background-image: url("../images/login/login.png");
+    background-position: right -240px;
+    padding-left: 10px;
+    width: 280px;
+}
+#submit_button input {
+    cursor: pointer;
+    padding: 10px 0;
+    text-align: center;
+    width: 360px;
+    color:#fff;
+}
+#submit_button:hover {
+    background-image: url("../images/login/login.png");
+    background-position: right -300px;
+}
+input {
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    font-size: 1em;
+    width: 235px;
+	color:#fff;
+}
+.top_message {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-bottom: 1px solid #CCCCCC;
+    border-top: 1px solid #CCCCCC;
+    color: #999999;
+    margin: auto;
+    padding: 20px 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.top_message_error {
+    background: none repeat scroll 0 0 #FFCCCC;
+    border-bottom: 1px solid #CC4444;
+    border-top: 1px solid #CC4444;
+    color: #880000;
+    margin: auto;
+    padding: 20px 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.product_other{
+    height:60px;
+}
+.lifepos_logo{
+    height:50px;
+}
+.lifetek_logos {
+    margin: 10px auto 0 auto;
+    width:1000px;
+}
+.lifepos_slogan_img{
+    width:75px;
+}
+.lifepos_slogan_text_bold{
+    color:black;
+    font-size:16px;
+    font-weight:bold;
+}
+.lifepos_slogan_text{
+    color:black;
+    font-size:16px;
+}
+.lifepos_slogan_padding{
+    padding-left:15px;
+}
+.lifepos_slogan_tr_padding{
+    padding-top:7px;
+}
+.clear{
+    clear:both;
+}
+.lifetek_product_logos{
+    text-align:center;
+}
+
+
+/*css login new version*/
+.google-header-bar.centered {
+	height: auto;
+}
+.radio, .checkbox{
+	font-size:12px;	
+}
+.header img{
+	margin:0;
+	width:205px;
+	height:125px;	
+}
+.banner {
+	text-align: center;
+}
+.banner h1 {
+	color: #555555;
+	font-family: 'Open Sans', arial;
+	font-size: 28px;
+	font-weight: 200;
+	margin: 0;
+	text-shadow: 1px 1px 1px #989898;
+}
+.banner h2 {
+	color: #555555;
+	font-family: 'Open Sans', arial;
+	font-size: 14px;
+	margin:10px 0;
+	text-shadow: 1px 1px 1px #989898;
+}
+.taovietmoi {
+    background: none repeat scroll 0 0 #F7F7F7;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+    margin: 0 auto;
+    padding: 0 20px 20px;
+    width: 300px;
+}
+.logo-customer {
+    margin: 0 auto;
+    width: 142px;
+}
+.logo-customer img {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 80px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+    height: 150px;
+    margin: 15px 0;
+    padding: 4px;
+    width: 150px;
+}
+
+#outer-wrapper {
+    /*background: url("images/bg-gradient-sand.png") repeat-x scroll 0 0px, url("images/bg-sand.png") repeat scroll 0 0px, none repeat scroll 0 0 #F5F1E8;*/
+}
+.top_message_error {
+    background: none repeat scroll 0 0 #FFCCCC;
+    border-bottom: 1px solid #CC4444;
+    border-top: 1px solid #CC4444;
+    color: #880000;
+    margin: auto;
+    padding: 20px 0;
+	margin:67px 0 0 0;
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

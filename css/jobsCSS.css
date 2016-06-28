@@ -1,0 +1,273 @@
+/*********
+    STYLE FORM JOBS INFO
+*******/
+::selection{ background-color: #E13300; color: white; }
+
+
+body {
+    width: 60%;
+    margin: 40px auto;
+    background-color: #fff;
+    font: 13px/20px normal Helvetica, Arial, sans-serif;
+    color: #4F5155;
+
+}
+
+a {
+    color: #003399;
+    background-color: transparent;
+    font-weight: normal;
+}
+
+h1 {
+    
+    background-color: transparent;
+   /*  border-bottom: 1px solid #D0D0D0; 
+   color: #444;*/
+    font-size: 19px;
+    font-weight: normal;
+    margin: 0 0 14px 0;
+    padding: 14px 15px 10px 15px;
+    height: 30px;
+    line-height: 30px
+}
+
+code {
+    font-family: Consolas, Monaco, Courier New, Courier, monospace;
+    font-size: 12px;
+    background-color: #f9f9f9;
+    border: 1px solid #D0D0D0;
+    color: #002166;
+    display: block;
+    margin: 14px 0 14px 0;
+    padding: 12px 10px 12px 10px;
+}
+
+#body{
+    margin: 0 15px 0 15px;
+}
+
+p.footer{
+    text-align: right;
+    font-size: 11px;
+    border-top: 1px solid #D0D0D0;
+    line-height: 32px;
+    padding: 0 10px 0 10px;
+    margin: 20px 0 0 0;
+}
+
+#container{
+   /*  margin: 10px;
+   border: 1px solid #D0D0D0;
+    -webkit-box-shadow: 0 0 8px #D0D0D0;*/
+}
+
+#status_module {
+    display: block;
+    height: 35px;
+    padding-top: 10px;
+    border: none;
+    overflow: hidden;
+}
+#status_module input{
+    width: 267px;
+    height: 31px;
+    float: left;
+    border: 1px solid #D0D0D0;
+}
+#status_module select{
+    width: 267px !important;
+    height: 28px;
+    float: left;
+    color: #232323;
+}
+
+#status_module textarea{
+    border: 1px solid #CCC;
+    color: #232323;
+
+}
+#status_module #search_employees{
+    background: url("../images/pieces/search.png")no-repeat top left transparent;
+    width: 267px;
+    height: 36px;
+    float: left;
+    border: none;
+    padding: 0 10px;
+
+}
+#status_module #search{
+    background: url("../images/pieces/search.png")no-repeat top left transparent;
+    width: 267px;
+    height: 36px;
+    float: left;
+    border: none;
+    padding: 0 10px;
+
+}
+#status_module label{
+    height: 25px;
+    font-size: 13px;
+    text-align: left;
+    min-width: 150px;
+    line-height: 25px;
+    margin:0 10px 0 30px;
+    float: left;
+}
+ul#radio_result{
+    list-style: none;
+    position: relative;
+    overflow: hidden;
+    height: 30px;
+    line-height: 33px;
+}
+ul#radio_result li #jobs_reports_status{
+
+    float: left;
+}
+ul#radio_result li span{
+    float: left;
+}
+ul#radio_result li #jobs_reports_status{
+    float: left;
+	width: 13px;
+	height: 23px;
+	margin-top: 5px;
+	margin-left: 6px;
+}
+ul#radio_result li{
+    position: absolute;
+    margin: 0 10px ;
+    width: 200px;
+}
+ul#radio_result li:last-child{
+    left: 200px;
+}
+/* #submit{
+	position: relative;
+	top: -9px;
+	background: cornflowerblue;
+	float: left;
+	left: 473px;
+} */
+#button{
+    position: relative;
+    font-size: 14px;
+    margin: 0 10px;
+    background: cornflowerblue;
+    float:left;
+    left: 125px;
+
+}
+
+#error h4.alert_warning {
+    display: block;
+    width: 47%;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-position: 10px 10px;
+    border: 1px solid #C7A20D;
+    color: #796616;
+    text-indent: 25px;
+    font-size: 13px;
+    position: relative;
+    height: 25px;
+    line-height: 25px;
+    left: 145px;
+    top: -1px;
+}
+#button{
+    width: 90px;
+    height: 34px;
+    line-height: 32px;
+    font-weight: bold;
+    cursor: pointer;
+	top: -50px !important;
+	margin:16px;
+	/* left: 563px !important; */
+}
+/*
+    STYLE FROM
+
+*/
+#table_insert{
+    position: relative;
+    bottom: 1000px;
+    left: 10px;
+    overflow: hidden;
+    height: 118px;
+    width: 97%;
+}
+
+#table_insert .show_insert{
+    position: absolute;
+    top: 55px;
+    left: 5px;
+}
+#table_insert .insert_info{
+    position: absolute;
+    top: -5px;
+    width: 100%;
+    left: 60px;
+}
+#table_insert .insert_info label{
+    color: #555;
+    font-weight: bold;
+    line-height: 30px;
+    height: 30px;
+}
+#table_insert_employees{
+    position: relative;
+    bottom: 1000px;
+    left: 10px;
+    overflow: hidden;
+    height: 120px;
+    width: 97%;
+}
+#table_insert_employees .insert_info{
+    position: absolute;
+    top: -5px;
+    width: 100%;
+    left: 60px;
+}
+#table_insert_employees .show_insert{
+    position: absolute;
+    top: 55px;
+    left: 5px;
+}
+#table_insert_employees .insert_info label{
+    color: #555;
+    font-weight: bold;
+    line-height: 30px;
+    height: 30px;
+}
+
+#contents th{
+    background: cornflowerblue;
+}
+#contents tr{
+    background: #F5F5F5;
+}
+#contents tr td{
+    background: #FFFFFF;
+}
+
+#contents #item_table tr td{
+    font-size: 13px;
+}
+#table_insert #contents #item_table tr input[type=checkbox]{
+    width: 11px;
+    height: 11px;
+    border: 1px solid #f5f5f5;
+}
+#contents #item_table tr td{
+    border-bottom: 1px dotted #D0D8DF;
+    border-right: 1px solid #F1F1F1;
+}
+#contents #item_table tr:last-child td{
+    border-bottom: none ;
+}
+#contents #item_table tr td:last-child{
+    border-right: none ;
+}

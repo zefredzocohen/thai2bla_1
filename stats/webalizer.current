@@ -1,0 +1,560 @@
+# Webalizer V2.01-10 Incremental Data - 03/28/2014 13:50:52
+2014 3 28 13 50 52
+5320 1388 2 175 37 5 9272711 362 4 0 0 0
+2 1499 2893 28 28
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+5320 1388 9272711 2 362 4 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+2893 1077 6881301 179 0 0
+928 55 436218 62 0 0
+1499 256 1955192 121 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0
+0
+0
+1388
+0
+0
+0
+0
+0
+0
+0
+0
+24
+0
+3520
+0
+0
+0
+0
+0
+0
+388
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+# -urls- 
+/css/indexJobs.css
+0 6 0 2536 0 0 0 0
+/images/pieces/subtotals.png
+1 1 0 3523 0 0 0 0
+/metro/colorbox/colorbox.js
+0 94 0 2250 0 0 0 0
+/images/menubar/receivings.png
+1 45 0 54480 0 0 0 0
+/images/menubar/categories.png
+1 3 0 3813 0 0 0 0
+/images/support/icon-support.png
+1 94 0 122508 0 0 0 0
+/phpmyadmin/themes/original/img/b_deltbl.png
+1 1 0 225 0 0 0 0
+/task/common/v_complete.png
+1 1 0 15600 0 0 0 0
+/images/support/skype.png
+1 94 0 14904 0 0 0 0
+/calendar/codebase/ext/dhtmlxscheduler_multiselect.js
+0 4 0 809 0 0 0 0
+/
+0 246 0 2354819 4 2 0 0
+/images/menubar/accountings.png
+1 46 0 57135 0 0 0 0
+/images/menubar/items.png
+1 62 0 61770 0 0 0 0
+/images/slider/life_portal_logo.png
+1 10 0 100415 0 0 0 0
+/css/tables.css
+0 94 0 77886 0 0 0 0
+/css/jquery-ui-1.8.14.custom.css
+0 94 0 68040 0 0 0 0
+/phpmyadmin/themes/original/img/logo_left.png
+1 1 0 6854 0 0 0 0
+/phpmyadmin/themes/original/img/b_empty.png
+1 1 0 175 0 0 0 0
+/phpmyadmin/themes/original/img/arrow_ltr.png
+1 1 0 142 0 0 0 0
+/phpmyadmin/themes/original/img/s_success.png
+1 1 0 589 0 0 0 0
+/phpmyadmin/themes/original/img/b_edit.png
+1 1 0 342 0 0 0 0
+/phpmyadmin/themes/original/img/b_tblimport.png
+1 1 0 158 0 0 0 0
+/js/jquery.plugins.min.js
+0 84 0 95168 0 0 0 0
+/phpmyadmin/themes/original/img/s_desc.png
+1 1 0 134 0 0 0 0
+/phpmyadmin/js/common.js
+0 1 0 3118 0 0 0 0
+/calendar/codebase/imgs_dhx_terrace/arrow_left.png
+1 3 0 198 0 0 0 0
+/phpmyadmin/themes/original/img/b_selboard.png
+1 1 0 164 0 0 0 0
+/js/jquery.jeditable.js
+0 1 0 5114 0 0 0 0
+/file/111.png
+1 94 0 124398 0 0 0 0
+/phpmyadmin/themes/original/img/b_newtbl.png
+1 1 0 271 0 0 0 0
+/images/menubar/tinhoc.png
+1 1 0 874 0 0 0 0
+/js/modernizr.custom.js
+0 94 0 72738 0 0 0 0
+/phpmyadmin/themes/original/img/s_asc.png
+1 1 0 131 0 0 0 0
+/css/login.css
+0 10 0 6880 0 0 0 0
+/phpmyadmin/themes/original/img/b_tblexport.png
+1 1 0 160 0 0 0 0
+/images/pieces/item_empty_large.png
+1 1 0 767 0 0 0 0
+/images/logosp/lifetek.png
+1 10 0 476365 0 0 0 0
+/images/pieces/search.png
+1 37 0 30394 0 0 0 0
+/css/menu-style.css
+0 91 0 21616 0 0 0 0
+/phpmyadmin/
+0 2 0 3557 0 0 0 0
+/images/loading.gif
+1 1 0 771 0 0 0 0
+/images/no-images-product.jpg
+1 1 0 3327 0 0 0 0
+/task/codebase/dhtmlxgantt.js
+0 4 0 86326 0 0 0 0
+/css/style-menu.css
+0 94 0 52536 0 0 0 0
+/phpmyadmin/themes/original/img/s_db.png
+1 1 0 167 0 0 0 0
+/calendar/codebase/dhtmlxscheduler.css
+0 3 0 8036 0 0 0 0
+/phpmyadmin/themes/original/img/b_sbrowse.png
+1 1 0 114 0 0 0 0
+/metro/colorbox/jquery.colorbox.js
+0 94 0 145638 0 0 0 0
+/images/header/icon.png
+1 128 0 476028 0 0 0 0
+/phpmyadmin/themes/original/img/s_fulltext.png
+1 1 0 183 0 0 0 0
+/phpmyadmin/tbl_change.php
+0 7 0 32256 0 0 0 0
+/phpmyadmin/themes/original/img/b_tblops.png
+1 1 0 209 0 0 0 0
+/phpmyadmin/themes/original/img/b_sqlhelp.png
+1 1 0 165 0 0 0 0
+/phpmyadmin/js/tbl_change.js
+0 1 0 2969 0 0 0 0
+/images/pieces/buttons.png
+1 37 0 37786 0 0 0 0
+/images/slider/life_aiim_logo.png
+1 10 0 83140 0 0 0 0
+/images/slider/lifecrm_logo.png
+1 10 0 171545 0 0 0 0
+/css/token-input.css
+0 94 0 10494 0 0 0 0
+/js/jquery-1.10.1.min.js
+0 94 0 591066 0 0 0 0
+/images/pieces/reports_main_one.png
+1 1 0 2881 0 0 0 0
+/css/editsale.css
+0 94 0 2178 0 0 0 0
+/phpmyadmin/themes/original/img/b_tblanalyse.png
+1 1 0 177 0 0 0 0
+/js/jquery.dlmenu.js
+0 6 0 7068 0 0 0 0
+/calendar/codebase/dhtmlxscheduler.js
+0 3 0 35731 0 0 0 0
+/phpmyadmin/themes/original/img/bd_select.png
+1 1 0 406 0 0 0 0
+/phpmyadmin/themes/original/img/b_insrow.png
+1 1 0 169 0 0 0 0
+/js/jquery.jcarousel.min.js
+0 10 0 22555 0 0 0 0
+/images/sprite.png
+1 13 0 28920 0 0 0 0
+/calendar/codebase/ext/dhtmlxscheduler_quick_info.js
+0 3 0 1552 0 0 0 0
+/phpmyadmin/navigation.php
+0 1 0 6359 0 0 0 0
+/phpmyadmin/themes/original/img/b_props.png
+1 1 0 168 0 0 0 0
+/css/reports.css
+0 94 0 13752 0 0 0 0
+/images/menubar/item_kits.png
+1 46 0 61770 0 0 0 0
+/images/menubar/sales.png
+1 46 0 61425 0 0 0 0
+/images/menubar/config.png
+1 45 0 64365 0 0 0 0
+/js/bootstrap.js
+0 10 0 54565 0 0 0 0
+/calendar/codebase/ext/dhtmlxscheduler_map_view.js
+0 3 0 3244 0 0 0 0
+/css/thickbox.css
+0 94 0 19674 0 0 0 0
+/images/menubar/customers.png
+1 47 0 57240 0 0 0 0
+/images/loading_animation.gif
+1 94 0 105948 0 0 0 0
+/phpmyadmin/themes/original/img/s_notice.png
+1 1 0 145 0 0 0 0
+/images/slider/life_office_logo.png
+1 10 0 90235 0 0 0 0
+/images/menubar/language.png
+1 2 0 2930 0 0 0 0
+/phpmyadmin/themes/original/img/window-new.png
+1 1 0 475 0 0 0 0
+/calendar/codebase/ext/dhtmlxscheduler_active_links.js
+0 3 0 451 0 0 0 0
+/task/common/connector.php
+0 4 0 1906 0 0 0 0
+/phpmyadmin/themes/original/img/s_host.png
+1 1 0 189 0 0 0 0
+/phpmyadmin/themes/original/img/b_docs.png
+1 1 0 170 0 0 0 0
+/calendar/common/events_map_view.php
+0 3 0 1648 0 0 0 0
+/task/codebase/ext/dhtmlxgantt_quick_info.js
+0 4 0 3400 0 0 0 0
+/phpmyadmin/js/tooltip.js
+0 1 0 1673 0 0 0 0
+/css/phppos.css
+0 94 0 7272 0 0 0 0
+/phpmyadmin/js/navigation.js
+0 1 0 1521 0 0 0 0
+/calendar/codebase/ext/dhtmlxscheduler_timeline.js
+0 3 0 7438 0 0 0 0
+/images/pieces/table_body.png
+1 41 0 59192 0 0 0 0
+/css/footer.css
+0 94 0 7344 0 0 0 0
+/js/metro.js
+0 84 0 36864 0 0 0 0
+/images/menubar/giftcards.png
+1 2 0 1485 0 0 0 0
+/phpmyadmin/themes/original/img/b_select.png
+1 1 0 424 0 0 0 0
+/js/gen.js
+0 94 0 82602 0 0 0 0
+/phpmyadmin/themes/original/img/bd_empty.png
+1 1 0 175 0 0 0 0
+/task/codebase/dhtmlxgantt.css
+0 4 0 17724 0 0 0 0
+/js/all.js
+0 94 0 1166202 0 0 0 0
+/phpmyadmin/themes/original/img/b_home.png
+1 1 0 234 0 0 0 0
+/phpmyadmin/themes/original/img/s_loggoff.png
+1 1 0 151 0 0 0 0
+/phpmyadmin/js/mootools.js
+0 1 0 20561 0 0 0 0
+/calendar/codebase/imgs/databg.png
+1 3 0 152 0 0 0 0
+/css/jquery.loadmask.css
+0 94 0 7200 0 0 0 0
+/images/calendar.png
+1 1 0 1091 0 0 0 0
+/images/menubar/web.png
+1 2 0 7170 0 0 0 0
+/phpmyadmin/themes/original/img/b_views.png
+1 1 0 348 0 0 0 0
+/metro/colorbox/css.css
+0 91 0 6894 0 0 0 0
+/calendar/codebase/ext/dhtmlxscheduler_minical.js
+0 3 0 3552 0 0 0 0
+/css/menubar.css
+0 94 0 9990 0 0 0 0
+/images/slider/life_pos_logo.png
+1 10 0 83990 0 0 0 0
+/phpmyadmin/themes/original/img/bd_browse.png
+1 1 0 151 0 0 0 0
+/phpmyadmin/js/functions.js
+0 1 0 12082 0 0 0 0
+/phpmyadmin/print.css
+0 1 0 311 0 0 0 0
+/js/alert.js
+0 10 0 5530 0 0 0 0
+/images/pieces/item_base.png
+1 1 0 4703 0 0 0 0
+/css/images/sprite.png
+1 83 0 76605 0 0 0 0
+/images/menubar/timekeeping.png
+1 45 0 46950 0 0 0 0
+/images/pieces/reg_item_search.png
+1 1 0 3947 0 0 0 0
+/images/menubar/profit.png
+1 45 0 240855 0 0 0 0
+/items/1209031_536864763051827_313419383_n.jpg
+1 18 0 19364 0 0 0 0
+/css/phppos_print.css
+0 94 0 4536 0 0 0 0
+/phpmyadmin/themes/original/img/logo_right.png
+1 1 0 4756 0 0 0 0
+/calendar/codebase/ext/dhtmlxscheduler_tooltip.js
+0 3 0 1400 0 0 0 0
+/css/css3.css
+0 94 0 1584 0 0 0 0
+/css/general.css
+0 94 0 70344 0 0 0 0
+/js/jquery-1.4.2.min.js
+0 10 0 123030 0 0 0 0
+/phpmyadmin/themes/original/img/b_print.png
+1 1 0 432 0 0 0 0
+/calendar/codebase/imgs_dhx_terrace/arrow_right.png
+1 3 0 189 0 0 0 0
+/css/images/ui-bg_glass_100_fdf5ce_1x400.png
+1 1 0 125 0 0 0 0
+/images/pieces/snguyenone.png
+1 1 0 4400 0 0 0 0
+/calendar/codebase/ext/dhtmlxscheduler_recurring.js
+0 3 0 5440 0 0 0 0
+/phpmyadmin/tbl_replace.php
+0 7 0 55523 0 0 0 0
+/css/skin.css
+0 10 0 3795 0 0 0 0
+/phpmyadmin/themes/original/img/b_help.png
+1 1 0 138 0 0 0 0
+/images/slider/life_school_logo.png
+1 10 0 84695 0 0 0 0
+/phpmyadmin/sql.php
+0 6 0 46275 0 0 0 0
+/css/token-input-facebook.css
+0 94 0 11970 0 0 0 0
+/js/jquery.maskMoney.js
+0 4 0 12668 0 0 0 0
+/items/Vong_tay_VT007-590k.jpg
+1 18 0 34792 0 0 0 0
+/css/datepicker.css
+0 94 0 18198 0 0 0 0
+/phpmyadmin/themes/original/img/b_sql.png
+1 1 0 194 0 0 0 0
+/items/1379130929-maibang4.jpg
+1 18 0 27600 0 0 0 0
+/css/metro.css
+0 94 0 90606 0 0 0 0
+/phpmyadmin/phpmyadmin.css.php
+0 23 0 105948 0 0 0 0
+/css/register.css
+0 94 0 66078 0 0 0 0
+/phpmyadmin/themes/original/img/b_import.png
+1 1 0 179 0 0 0 0
+/phpmyadmin/themes/original/img/b_drop.png
+1 1 0 192 0 0 0 0
+/css/bootstrap.min.css
+0 10 0 87505 0 0 0 0
+/images/spinner_small.gif
+1 42 0 13139 0 0 0 0
+/phpmyadmin/js/keyhandler.js
+0 1 0 664 0 0 0 0
+/images/menubar/employees.png
+1 45 0 54870 0 0 0 0
+/calendar/codebase/imgs/icon.png
+1 2 0 230 0 0 0 0
+/calendar/codebase/ext/dhtmlxscheduler_treetimeline.js
+0 3 0 1732 0 0 0 0
+/css/receipt.css
+0 94 0 5238 0 0 0 0
+/css/images/ui-bg_highlight-soft_100_eeeeee_1x100.png
+1 35 0 450 0 0 0 0
+/phpmyadmin/js/mootools-more.js
+0 1 0 49056 0 0 0 0
+/phpmyadmin/favicon.ico
+0 1 0 18902 0 0 0 0
+/phpmyadmin/themes/original/img/b_browse.png
+1 1 0 151 0 0 0 0
+/images/pieces/btnUpdate.png
+1 7 0 11360 0 0 0 0
+/calendar/codebase/ext/dhtmlxscheduler_year_view.js
+0 3 0 2833 0 0 0 0
+/phpmyadmin/themes/original/img/b_search.png
+1 1 0 491 0 0 0 0
+/phpmyadmin/themes/original/img/b_export.png
+1 1 0 183 0 0 0 0
+/phpmyadmin/themes/original/img/item_ltr.png
+1 1 0 121 0 0 0 0
+/images/menubar/jobs.png
+1 45 0 50385 0 0 0 0
+/images/menubar/reports.png
+1 45 0 53145 0 0 0 0
+/metro/colorbox/colorbox.css
+0 91 0 14598 0 0 0 0
+/phpmyadmin/db_structure.php
+0 1 0 16475 0 0 0 0
+/items/1379130929-maibang2.jpg
+1 18 0 19188 0 0 0 0
+/phpmyadmin/themes/original/img/s_tbl.png
+1 1 0 139 0 0 0 0
+/css/popupbox.css
+0 94 0 8730 0 0 0 0
+# End Of Table - urls
+# -sites- (monthly)
+117.6.1.149
+0 5115 1263 8275833 2 1396013896
+/ 0 0
+118.69.191.134
+0 205 125 996878 2 1396014645
+/ 0 0
+# End Of Table - sites (monthly)
+# -sites- (daily)
+117.6.1.149
+0 5115 1263 8275833 2 1396013896
+/ 0 0
+118.69.191.134
+0 205 125 996878 2 1396014645
+/ 0 0
+# End Of Table - sites (daily)
+# -referrers- 
+http://4biz-pro.lifetek.vn/
+1 85
+http://4biz-pro.lifetek.vn/index.php/customers
+1 25
+- (Direct Request)
+0 41
+http://4biz-pro.lifetek.vn/index.php/regions
+1 524
+http://4biz-pro.lifetek.vn/css/register.css
+1 3
+http://4biz-pro.lifetek.vn/index.php/customers/detail_customer_sale/321
+1 6
+http://4biz-pro.lifetek.vn/phpmyadmin/phpmyadmin.css.php
+1 2
+http://4biz-pro.lifetek.vn/css/phppos.css
+1 31
+http://4biz-pro.lifetek.vn/index.php/affiliates
+1 6
+http://4biz-pro.lifetek.vn/index.php/item_kits
+1 95
+http://4biz-pro.lifetek.vn/index.php/contractcustomer
+1 36
+http://4biz-pro.lifetek.vn/phpmyadmin/tbl_replace.php
+1 13
+http://4biz-pro.lifetek.vn/index.php/jobs
+1 121
+http://4biz-pro.lifetek.vn/index.php/categories
+1 410
+http://4biz-pro.lifetek.vn/css/metro.css
+1 336
+http://4biz-pro.lifetek.vn/index.php/calendar
+1 134
+http://4biz-pro.lifetek.vn/index.php/language
+1 51
+http://4biz-pro.lifetek.vn/index.php/home
+1 2277
+http://4biz-pro.lifetek.vn/index.php/employees
+1 4
+http://4biz-pro.lifetek.vn/index.php/tinhoc
+1 37
+http://4biz-pro.lifetek.vn/css/general.css
+1 6
+http://4biz-pro.lifetek.vn/index.php/login
+1 90
+http://4biz-pro.lifetek.vn/index.php/units
+1 7
+http://4biz-pro.lifetek.vn/phpmyadmin/index.php
+1 9
+http://4biz-pro.lifetek.vn/index.php/items
+1 682
+http://4biz-pro.lifetek.vn/css/tables.css
+1 62
+http://4biz-pro.lifetek.vn/css/jquery-ui-1.8.14.custom.css
+1 32
+http://4biz-pro.lifetek.vn/phpmyadmin/sql.php
+1 19
+http://4biz-pro.lifetek.vn/index.php/timekeeping
+1 8
+http://4biz-pro.lifetek.vn/index.php/costs/report_cdkts
+1 5
+http://4biz-pro.lifetek.vn/index.php/sales
+1 10
+http://4biz-pro.lifetek.vn/phpmyadmin/tbl_change.php
+1 16
+http://4biz-pro.lifetek.vn/calendar/codebase/dhtmlxscheduler.css
+1 11
+http://4biz-pro.lifetek.vn/phpmyadmin/db_structure.php
+1 28
+http://4biz-pro.lifetek.vn/index.php/accountings
+1 13
+http://4biz-pro.lifetek.vn/phpmyadmin/navigation.php
+1 11
+http://4biz-pro.lifetek.vn/index.php/giftcards
+1 74
+# End Of Table - referrers
+# -agents- 
+Mozilla/5.0 (compatible; MSIE 10.0; Windows Phone 8.0; Trident/6.0; IEMobile/10.0; ARM; Touch; NOKIA; Lumia 525)
+0 203
+Mozilla/5.0 (Windows NT 6.2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36
+0 1246
+Mozilla/5.0 (Windows NT 6.1; WOW64; rv:28.0) Gecko/20100101 Firefox/28.0
+0 3332
+Microsoft Office Mobile/15.0
+0 2
+Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36
+0 537
+# End Of Table - agents
+# -search strings- 
+# End Of Table - search strings
+# -usernames- 
+# End Of Table - usernames

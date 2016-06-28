@@ -1,0 +1,102 @@
+<?php
+function get_affiliates_table($employees_jobs,$controller)
+{
+    $CI =& get_instance();
+    $table='<table class="tablesorter" id="sortable_table">';
+
+    $headers = array('<input type="checkbox" id="select_all" />',
+        lang('common_affiliates_name'),
+        lang('common_affiliates_manager'),
+        lang('common_affiliates_parent'),
+        lang('common_affiliates_city'),
+        lang('common_affiliates_date'),
+        lang('common_affiliates_status'),
+        '&nbsp');
+    $table.='<thead><tr>';
+
+    $count = 0;
+    foreach($headers as $header)
+    {
+        $count++;
+        if ($count == 1)
+        {
+            $table.="<th class='leftmost'>$header</th>";
+        }
+        elseif ($count==count($headers))
+        {
+            $table.="<th class='rightmost'>$header</th>";
+        }
+        else
+        {
+            $table.="<th>$header</th>";
+        }
+    }
+    $table.='</tr></thead><tbody>';
+    $table.= get_affiliates_manage_table_data_rows($employees_jobs,$controller);
+    $table.='</tbody></table>';
+    return $table;
+}
+
+/*
+Gets the html data rows for the people.
+*/
+function get_affiliates_manage_table_data_rows($employees_jobs,$controller)
+{
+    $CI =& get_instance();
+    $table_data_rows='';
+
+    foreach($employees_jobs->result() as $data)
+    {
+        $table_data_rows.= get_affiliates_data_row($data,$controller);
+    }
+
+    if($employees_jobs->num_rows()==0)
+    {
+        $table_data_rows.="<tr><td colspan='4'><div class='warning_message' style='padding:7px;font-weight:bold;color:#333'>".lang('common_no_jobs_to_display')."</div></tr></tr>";
+    }
+
+    return $table_data_rows;
+}
+
+function get_affiliates_data_row($data,$controller)
+{
+    $CI =& get_instance();
+    $controller_name = strtolower(get_class($CI));
+    $width = $controller->get_form_module_width();
+    $manager_person = $controller->get_manager_info();
+
+    $get_city = $controller->get_city();
+    $parent_id = $controller->get_parent_affiliates($data->jobs_affiliates_id);
+
+    $table_data_row='<tr>';
+        $table_data_row.="<td width='1%'><input type='checkbox' id='person_$data->jobs_affiliates_id' value='".$data->jobs_affiliates_id."'/></td>";
+        $table_data_row.='<td width="15%" style="color:#000;height:45px;color:'.$data->jobs_affiliates_color.'""><p style="display:inline-block;margin:0px 0 0 2px;min-height:20px;height:auto;float:left;width:130px;padding:8px 0 5px 0;color:'.$data->jobs_affiliates_color.'">'.$data->jobs_affiliates_name.'</p></td>';
+        foreach($manager_person AS $keys => $values){
+            if($values->person_id == $data->person_id){
+                $table_data_row.='<td style="color: #000;width: 17%;text-align:left;font-size: 12px">'. $values->first_name.' </td>';
+            }
+        }
+        if($parent_id->jobs_affiliates_id == $data->jobs_affiliates_parent_id){
+            $table_data_row.='<td style="color: #000;width: 18%;text-align:left;font-size: 12px">'. $parent_id->jobs_affiliates_name.' </td>';
+        }else{
+            $table_data_row.='<td style="color: #000;width: 13%;text-align:left;font-size: 12px">Chi nhánh cha</td>';
+        }
+
+        foreach($get_city AS $keys => $values){
+            if($values->jobs_city_id == $data->jobs_city_id){
+                $table_data_row.='<td style="color: #000;width: 13%;text-align:left;font-size: 12px">'. $values->jobs_city_name.' </td>';
+            }
+        }
+
+        $table_data_row.='<td width="13%" style="color:#000;height:45px;line-height:45px">'.date(get_date_format(),strtotime($data->jobs_affiliates_date)).'</td>';
+        if($data->jobs_affiliates_status == 1){
+            $table_data_row.='<td width="12%" style="color:#000;height:45px;">Hoạt động</td>';
+        }else{
+            $table_data_row.='<td width="12%" style="color:#000;height:45px;">Tạm dừng</td>';
+        }
+        $table_data_row.='<td width="1%" style="font-family: Arial" class="rightmost">'.anchor($controller_name."/view/$data->jobs_affiliates_id/width~$width", lang('common_edit'),array('class'=>'thickbox','title'=>lang($controller_name.'_update'))).'</td>';
+    $table_data_row.='</tr>';
+
+    return $table_data_row;
+}
+

@@ -1,0 +1,1984 @@
+<?php
+
+function get_customer_type_manage_table($customer_type,$controller)
+{
+	$CI =& get_instance();
+	$table='<table class="tablesorter" id="sortable_table">';
+	$headers = array('<input type="checkbox" id="select_all" />' , 
+	lang('common_customer_type_id'),
+	lang('common_customer_type_name'),
+	'Hành động');
+	$table.='<thead><tr>';
+
+	$count = 0;
+	foreach($headers as $header)
+	{
+		$count++;
+		
+		if ($count == 1)
+		{
+			$table.="<th class='leftmost'>$header</th>";
+		}
+		elseif ($count == count($headers))
+		{
+			$table.="<th class='rightmost'>$header</th>";
+		}
+		else
+		{
+			$table.="<th>$header</th>";		
+		}
+	}
+	$table.='</tr></thead><tbody>';
+	$table.=get_customer_type_manage_table_data_rows($customer_type,$controller);
+	$table.='</tbody></table>';
+	return $table;
+}
+function get_customer_type_manage_table_data_rows($customer_type,$controller){
+	$CI =& get_instance();
+	$table_data_rows='';
+	
+	foreach($customer_type->result() as $customer)
+	{
+		$table_data_rows.=get_customer_data_row($customer,$controller);
+	}
+	
+	if($customer_type->num_rows()==0)
+	{
+		$table_data_rows.="<tr><td colspan='7'><div class='warning_message' style='padding:7px;'>".lang('common_no_persons_to_display')."</div></tr></tr>";
+	}
+	
+	return $table_data_rows;
+
+}
+function get_customer_data_row($customer,$controller)
+{
+	 $CI =& get_instance();
+	$controller_name=strtolower(get_class($CI));
+	$width = $controller->get_form_width();
+	//if($person->last_name == 0){$person->last_name = null;}
+	//$start_of_time =  date('Y-m-d', 0);
+	//$today = date('Y-m-d');
+	//$link = site_url('customers/detail_customer_sale/'.$category->id_cat);
+	$table_data_row='<tr>';	
+	$table_data_row.="<td width='5%'><input type='checkbox' id='$customer->customer_type_id' name='type[]' value='".$customer->customer_type_id."'/></td>";
+	//$table_data_row.='<td width="15%"><a href="'.$link.'" class="underline">'.$person->first_name.'&nbsp'.$person->last_name.'</a></td>';
+	//$table_data_row.='<td width="15%">'.$CI->City->get_info($person->city)->name.'</td>';
+	//$table_data_row.='<td width="30%">'.mailto($person->email,$person->email, array('class' => 'underline')).'</td>';
+	$table_data_row.='<td width="12%">'.$customer->customer_type_id.'</td>';
+	$table_data_row.='<td width="15%">'.$customer->name.'</td>'; 	 
+	//$table_data_row.='<td width="15%">'.$person->birth_date.'</td>';	
+	$table_data_row.='<td width="5%" class="rightmost">'.anchor($controller_name."/view/$customer->customer_type_id/width~$width", lang('common_edit'),array('class'=>'thickbox','title'=>lang($controller_name.'_update'))).'</td>';
+	$table_data_row.='</tr>'; 
+	
+	return $table_data_row;
+}
+/*Get the table to manage timekeeping*/
+function get_timekeeping_manage_table($timekeeping,$controller)
+{
+	$CI =& get_instance();
+	$table='<table class="tablesorter" id="sortable_table">';
+	
+	$headers = array('<input type="checkbox" id="select_all" />', 
+	lang('timekeeping_id'),
+	lang('timekeeping_date'),
+	lang('timekeeping_description'),
+	'Action');
+	$table.='<thead><tr>';
+
+	$count = 0;
+	foreach($headers as $header)
+	{
+		$count++;
+		
+		if ($count == 1)
+		{
+			$table.="<th style='text-align:center' class='leftmost'>$header</th>";
+		}
+		elseif ($count == count($headers))
+		{
+			$table.="<th style='text-align:center' class='rightmost'>$header</th>";
+		}
+		else
+		{
+			$table.="<th style='text-align:center'>$header</th>";		
+		}
+	}
+	$table.='</tr></thead><tbody>';
+	$table.=get_timekeeping_manage_table_data_rows($timekeeping,$controller);
+	$table.='</tbody></table>';
+	return $table;
+}
+
+function get_timekeeping_manage_table_data_rows($timekeeping,$controller)
+{
+	$CI =& get_instance();
+	$table_data_rows='';
+	
+	foreach($timekeeping->result() as $timekeepingday)
+	{
+		$table_data_rows.=get_timekeeping_data_row($timekeepingday,$controller);
+	}
+	
+	if($timekeeping->num_rows()==0)
+	{
+		$table_data_rows.="<tr><td colspan='7'><div class='warning_message' style='padding:7px;'>".lang('common_no_persons_to_display')."</div></tr></tr>";
+	}
+	
+	return $table_data_rows;
+}
+
+function get_timekeeping_data_row($timekeepingday,$controller)
+{
+	$CI =& get_instance();
+	$controller_name=strtolower(get_class($CI));
+	$width = $controller->get_form_width();
+	
+	$table_data_row='<tr>';	
+	$table_data_row.="<td style='text-align:center' width='3%'><input type='checkbox' id='person_$timekeepingday->id' value='".$timekeepingday->id."'/></td>";
+	$table_data_row.='<td style="text-align:center" width="12%">'.$timekeepingday->id.'</td>';
+	
+	$table_data_row.='<td style="padding-left:8px" width="10%">'.$timekeepingday->day_keeping.'</td>';
+	$table_data_row.='<td style="padding-left:8px" width="52%">'.$timekeepingday->description.'</td>';
+
+	$table_data_row.='<td style="text-align:center" width="2%" class="rightmost">'.anchor($controller_name."/view/$timekeepingday->id/width~$width", lang('common_edit'),array('class'=>'thickbox','title'=>lang($controller_name.'_update'))).'</td>';		// link sửa chữa "sửa"
+	
+	$table_data_row.='</tr>';
+	
+	return $table_data_row;
+}
+
+
+/*
+Gets the html table to manage mail.
+*/
+function get_mail_manage_table($mail,$controller)
+{
+	$CI =& get_instance();
+	$table='<table class="tablesorter" id="sortable_table">';
+	
+	$headers = array('<input type="checkbox" id="select_all" />', 
+	'Tiêu đề',
+        'Nội dung',    
+	'&nbsp');
+	$table.='<thead><tr>';
+
+	$count = 0;
+	foreach($headers as $header)
+	{
+		$count++;
+		
+		if ($count == 1)
+		{
+			$table.="<th class='leftmost'>$header</th>";
+		}
+		elseif ($count == count($headers))
+		{
+			$table.="<th class='rightmost'>$header</th>";
+		}
+		else
+		{
+			$table.="<th>$header</th>";		
+		}
+	}
+	$table.='</tr></thead><tbody>';
+	$table.=get_mail_manage_table_data_rows($mail,$controller);
+	$table.='</tbody></table>';
+	return $table;
+}
+
+/*
+Gets the html data rows for the mail.
+*/
+function get_mail_manage_table_data_rows($mail,$controller)
+{
+	$CI =& get_instance();
+	$table_data_rows='';
+	
+	foreach($mail->result() as $m)
+	{
+		$table_data_rows.=get_mail_data_row($m,$controller);
+	}
+	
+	if($mail->num_rows()==0)
+	{
+		$table_data_rows.="<tr><td colspan='4'><div class='warning_message' style='padding:7px;'>".lang('common_no_mail_to_display')."</div></tr></tr>";
+	}
+	
+	return $table_data_rows;
+}
+
+function get_mail_data_row($mail,$controller)
+{
+	$CI =& get_instance();
+	$controller_name=strtolower(get_class($CI));
+	
+	$table_data_row='<tr>';	
+	$table_data_row.="<td width='5%'><input type='checkbox' id='mail_$mail->mail_id' value='".$mail->mail_id."'/></td>";
+	$table_data_row.='<td width="30%">'.$mail->mail_title.'</a></td>';
+	$table_data_row.='<td width="50%">'.substr($mail->mail_content, 0, 20).'...</td>';	
+	$table_data_row.='<td width="15%" class="rightmost">'.anchor($controller_name."/view_mail/$mail->mail_id", lang('common_edit'),array('title'=>' Sửa mail')).'</td>';
+	$table_data_row.='</tr>';
+
+	return $table_data_row;
+}
+
+
+//hop dong
+
+function get_hopdong_manage_table($people,$controller)
+{
+	$CI =& get_instance();
+	$table='<table class="tablesorter" id="sortable_table">';
+	$headers = array('<input type="checkbox" id="select_all" />', 
+	lang('contracts_id'),
+	lang('contracts_ma'),
+    lang('contracts_employee'),
+    lang('contracts_type'),
+    lang('contracts_start_date'),
+    lang('contracts_end_date'),
+	'&nbsp');
+	$table.='<thead><tr>';
+
+	$count = 0;
+	foreach($headers as $header)
+	{
+		$count++;
+		
+		if ($count == 1)
+		{
+			$table.="<th class='leftmost'>$header</th>";
+		}
+		elseif ($count == count($headers))
+		{
+			$table.="<th class='rightmost'>$header</th>";
+		}
+		else
+		{
+			$table.="<th>$header</th>";		
+		}
+	}
+	$table.='</tr></thead><tbody>';
+	$table.=get_hopdong_manage_table_data_rows($people,$controller);
+	$table.='</tbody></table>';
+	return $table;
+}
+
+function get_hopdong_manage_table_data_rows($people,$controller)
+{
+	$CI =& get_instance();
+	$table_data_rows='';
+	
+	foreach($people->result() as $person)
+	{
+		$table_data_rows.=get_hopdong_data_row($person,$controller);
+	}
+	
+	if($people->num_rows()==0)
+	{
+		$table_data_rows.="<tr><td colspan='7'><div class='warning_message' style='padding:7px;'>".lang('common_no_persons_to_display')."</div></tr></tr>";
+	}
+	
+	return $table_data_rows;
+}
+
+function get_hopdong_data_row($person,$controller)
+{
+	$CI =& get_instance();
+	$controller_name=strtolower(get_class($CI));
+	$width = $controller->get_form_width();
+	$table_data_row='<tr>';	
+	$table_data_row.="<td width='5%'><input type='checkbox' id='person_$person->id' value='".$person->id_hopdong."'/></td>";
+	$table_data_row.='<td width="5%">'.$person->id_hopdong.'</td>';
+	$table_data_row.='<td width="15%">'.$person->ma_hopdong.'</td>';
+	$table_data_row.='<td width="15%">'.$person->id_employess.'</td>';	
+	$table_data_row.='<td width="15%">'.$person->loai_hopdong.'</td>';
+	$table_data_row.='<td width="15%">'.$person->date_start.'</td>';
+	$table_data_row.='<td width="15%">'.$person->date_end.'</td>';
+	$table_data_row.='<td width="5%" class="rightmost">'.anchor($controller_name."/view/$person->id_hopdong/width~$width", lang('common_edit'),array('class'=>'thickbox','title'=>lang($controller_name.'_update')))
+	.'</td>';
+	$table_data_row.='</tr>';
+	return $table_data_row;
+}
+
+
+/*End table helper hopdog*/
+/*Begin table helper of Visa */
+
+function get_visa_manage_table($abouts,$controller)
+{
+	$CI =& get_instance();
+	$table='<table class="tablesorter" id="sortable_table">';
+	
+	$headers = array('<input type="checkbox" id="select_all" />', 
+	lang('visa_id'),
+	lang('visa_name'),
+	'&nbsp');
+	$table.='<thead><tr>';
+
+	$count = 0;
+	foreach($headers as $header)
+	{
+		$count++;
+		
+		if ($count == 1)
+		{
+			$table.="<th style='text-align:center' class='leftmost'>$header</th>";
+		}
+		elseif ($count == count($headers))
+		{
+			$table.="<th style='text-align:center' class='rightmost'>$header</th>";
+		}
+		else
+		{
+			$table.="<th style='text-align:center'>$header</th>";		
+		}
+	}
+	$table.='</tr></thead><tbody>';
+	$table.=get_visa_manage_table_data_rows($abouts,$controller);
+	$table.='</tbody></table>';
+	return $table;
+}
+function get_visa_manage_table_data_rows($abouts,$controller)
+{
+	$CI =& get_instance();
+	$table_data_rows='';
+
+	foreach($abouts->result() as $about)
+	{
+		$table_data_rows.=get_visa_data_row($about,$controller);
+	
+	}
+	if($abouts->num_rows()==0)
+	{
+		$table_data_rows.="<tr><td colspan='7'><div class='warning_message' style='padding:7px;'>".lang('common_no_persons_to_display')."</div></tr></tr>";
+	}
+	
+	return $table_data_rows;
+}
+
+function get_visa_data_row($about,$controller)
+{
+	
+	$CI =& get_instance();
+	$controller_name=strtolower(get_class($CI));
+	//$width = $controller->get_form_width();	die('ff0');
+	//$width = $controller->get_form_width();
+	$table_data_row='<tr>';	
+	$table_data_row.="<td style='text-align:center' width='3%'>
+	<input type='checkbox' id='person_$about->id_education' value='".$about->id_visa."'/></td>";
+	$table_data_row.='<td style="text-align:center" width="2%">'.$about->id_visa.'</td>';
+
+	$table_data_row.='<td style="padding-left:8px;text-align: center;" width="10%">'.$about->name_visa.'</td>';	
+	$table_data_row.='<td style="text-align:center" width="2%" class="rightmost">'.anchor($controller_name."/view/$about->id_visa/width~$width", lang('common_edit'),array('class'=>'thickbox','title'=>lang($controller_name.'_update'))).'</td>';		
+	// link sửa chữa "sửa"
+	
+	$table_data_row.='</tr>';
+	
+	return $table_data_row;
+}
+
+
+
+/*End table helper of Visa */
+/*Begin table helper of language */
+
+function get_language_manage_table($abouts,$controller)
+{
+	$CI =& get_instance();
+	$table='<table class="tablesorter" id="sortable_table">';
+	
+	$headers = array('<input type="checkbox" id="select_all" />', 
+	lang('bangcap_id'),
+	lang('bangcap_name'),
+	'&nbsp');
+	$table.='<thead><tr>';
+
+	$count = 0;
+	foreach($headers as $header)
+	{
+		$count++;
+		
+		if ($count == 1)
+		{
+			$table.="<th style='text-align:center' class='leftmost'>$header</th>";
+		}
+		elseif ($count == count($headers))
+		{
+			$table.="<th style='text-align:center' class='rightmost'>$header</th>";
+		}
+		else
+		{
+			$table.="<th style='text-align:center'>$header</th>";		
+		}
+	}
+	$table.='</tr></thead><tbody>';
+	$table.=get_language_manage_table_data_rows($abouts,$controller);
+	$table.='</tbody></table>';
+	return $table;
+}
+function get_language_manage_table_data_rows($abouts,$controller)
+{
+	$CI =& get_instance();
+	$table_data_rows='';
+
+	foreach($abouts->result() as $about)
+	{
+		$table_data_rows.=get_language_data_row($about,$controller);
+		
+
+	}
+	if($abouts->num_rows()==0)
+	{
+		$table_data_rows.="<tr><td colspan='7'><div class='warning_message' style='padding:7px;'>".lang('common_no_persons_to_display')."</div></tr></tr>";
+	}
+	
+	return $table_data_rows;
+}
+
+function get_language_data_row($about,$controller)
+{
+	
+	$CI =& get_instance();
+	$controller_name=strtolower(get_class($CI));
+	//$width = $controller->get_form_width();	die('ff0');
+	$width = $controller->get_form_width();
+	$table_data_row='<tr>';	
+	$table_data_row.="<td style='text-align:center' width='3%'>
+	<input type='checkbox' id='person_$about->id_education' value='".$about->id_language."'/></td>";
+	$table_data_row.='<td style="text-align:center" width="2%">'.$about->id_language.'</td>';
+
+	$table_data_row.='<td style="padding-left:8px;text-align: center;" width="10%">'.$about->name_language.'</td>';	
+	$table_data_row.='<td style="text-align:center" width="2%" class="rightmost">'.anchor($controller_name."/view/".$about->id_language."/width~$width", lang('common_edit'),array('class'=>'thickbox','title'=>lang($controller_name.'_update'))).'</td>';		
+	// link sửa chữa "sửa"
+	
+	$table_data_row.='</tr>';
+	
+	return $table_data_row;
+}
+
+/*End table helper of language*/
+/*Begin table helper of tinhoc */
+
+function get_tinhoc_manage_table($abouts,$controller)
+{
+	$CI =& get_instance();
+	$table='<table class="tablesorter" id="sortable_table">';
+	
+	$headers = array('<input type="checkbox" id="select_all" />', 
+	lang('tinhoc_id'),
+	lang('tinhoc_name'),
+	'&nbsp');
+	$table.='<thead><tr>';
+
+	$count = 0;
+	foreach($headers as $header)
+	{
+		$count++;
+		
+		if ($count == 1)
+		{
+			$table.="<th style='text-align:center' class='leftmost'>$header</th>";
+		}
+		elseif ($count == count($headers))
+		{
+			$table.="<th style='text-align:center' class='rightmost'>$header</th>";
+		}
+		else
+		{
+			$table.="<th style='text-align:center'>$header</th>";		
+		}
+	}
+	$table.='</tr></thead><tbody>';
+	$table.=get_tinhoc_manage_table_data_rows($abouts,$controller);
+	$table.='</tbody></table>';
+	return $table;
+}
+function get_tinhoc_manage_table_data_rows($abouts,$controller)
+{
+	$CI =& get_instance();
+	$table_data_rows='';
+
+	foreach($abouts->result() as $about)
+	{
+		$table_data_rows.=get_tinhoc_data_row($about,$controller);
+		
+
+	}
+	if($abouts->num_rows()==0)
+	{
+		$table_data_rows.="<tr><td colspan='7'><div class='warning_message' style='padding:7px;'>".lang('common_no_persons_to_display')."</div></tr></tr>";
+	}
+	
+	return $table_data_rows;
+}
+
+function get_tinhoc_data_row($about,$controller)
+{
+	
+	$CI =& get_instance();
+	$controller_name=strtolower(get_class($CI));
+	//$width = $controller->get_form_width();	die('ff0');
+$width = $controller->get_form_width();
+	$table_data_row='<tr>';	
+	$table_data_row.="<td style='text-align:center' width='3%'>
+	<input type='checkbox' id='person_$about->id_education' value='".$about->id_tinhoc."'/></td>";
+	$table_data_row.='<td style="text-align:center" width="2%">'.$about->id_tinhoc.'</td>';
+	$table_data_row.='<td style="padding-left:8px;text-align: center;" width="10%">'.$about->chungchi_tinhoc.'</td>';	
+	$table_data_row.='<td style="text-align:center" width="2%" class="rightmost">'.anchor($controller_name."/view/$about->id_tid_tinhoc/width~$width", lang('common_edit'),array('class'=>'thickbox','title'=>lang($controller_name.'_update'))).'</td>';		
+	// link sửa chữa "sửa"
+	
+	$table_data_row.='</tr>';
+	
+	return $table_data_row;
+}
+
+/*End table helper of tinhoc */
+
+/*Begin table helper of bangcap */
+
+function get_bangcap_manage_table($abouts,$controller)
+{
+	$CI =& get_instance();
+	$table='<table class="tablesorter" id="sortable_table">';
+	
+	$headers = array('<input type="checkbox" id="select_all" />', 
+	lang('bangcap_id'),
+	lang('bangcap_name'),
+	'&nbsp');
+	$table.='<thead><tr>';
+
+	$count = 0;
+	foreach($headers as $header)
+	{
+		$count++;
+		
+		if ($count == 1)
+		{
+			$table.="<th style='text-align:center' class='leftmost'>$header</th>";
+		}
+		elseif ($count == count($headers))
+		{
+			$table.="<th style='text-align:center' class='rightmost'>$header</th>";
+		}
+		else
+		{
+			$table.="<th style='text-align:center'>$header</th>";		
+		}
+	}
+	$table.='</tr></thead><tbody>';
+	$table.=get_bangcap_manage_table_data_rows($abouts,$controller);
+	$table.='</tbody></table>';
+	return $table;
+}
+function get_bangcap_manage_table_data_rows($abouts,$controller)
+{
+	$CI =& get_instance();
+	$table_data_rows='';
+
+	foreach($abouts->result() as $about)
+	{
+		$table_data_rows.=get_bangcap_data_row($about,$controller);
+		
+
+	}
+	if($abouts->num_rows()==0)
+	{
+		$table_data_rows.="<tr><td colspan='7'><div class='warning_message' style='padding:7px;'>".lang('common_no_persons_to_display')."</div></tr></tr>";
+	}
+	
+	return $table_data_rows;
+}
+
+function get_bangcap_data_row($about,$controller)
+{
+	
+	$CI =& get_instance();
+	$controller_name=strtolower(get_class($CI));
+	//$width = $controller->get_form_width();	die('ff0');
+	$width = $controller->get_form_width();
+	$table_data_row='<tr>';	
+	$table_data_row.="<td style='text-align:center' width='3%'>
+	<input type='checkbox' id='person_$about->id_tinhoc' value='".$about->id_bangcap."'/></td>";
+	$table_data_row.='<td style="text-align:center" width="2%">'.$about->id_bangcap.'</td>';
+	$table_data_row.='<td style="padding-left:8px;text-align: center;" width="10%">'.$about->name_bangcap.'</td>';	
+
+	$table_data_row.='<td style="text-align:center" width="2%" class="rightmost">'.anchor($controller_name."/view/".$about->id_bangcap."/width~$width", lang('common_edit'),array('class'=>'thickbox','title'=>lang($controller_name.'_update'))).'</td>';	
+	// link sửa chữa "sửa"
+	
+	$table_data_row.='</tr>';
+	
+	return $table_data_row;
+}
+
+
+
+
+/*End table helper of bangcap */
+
+function get_education_manage_table($abouts,$controller)
+{
+	$CI =& get_instance();
+	$table='<table class="tablesorter" id="sortable_table">';
+	
+	$headers = array('<input type="checkbox" id="select_all" />', 
+	lang('education_id'),
+	lang('education_name'),
+	'&nbsp');
+	$table.='<thead><tr>';
+
+	$count = 0;
+	foreach($headers as $header)
+	{
+		$count++;
+		
+		if ($count == 1)
+		{
+			$table.="<th style='text-align:center' class='leftmost'>$header</th>";
+		}
+		elseif ($count == count($headers))
+		{
+			$table.="<th style='text-align:center' class='rightmost'>$header</th>";
+		}
+		else
+		{
+			$table.="<th style='text-align:center'>$header</th>";		
+		}
+	}
+	$table.='</tr></thead><tbody>';
+	$table.=get_educations_manage_table_data_rows($abouts,$controller);
+	$table.='</tbody></table>';
+	return $table;
+}
+function get_educations_manage_table_data_rows($abouts,$controller)
+{
+	$CI =& get_instance();
+	$table_data_rows='';
+
+	foreach($abouts->result() as $about)
+	{
+		$table_data_rows.=get_education_data_row($about,$controller);
+		
+
+	}
+	if($abouts->num_rows()==0)
+	{
+		$table_data_rows.="<tr><td colspan='7'><div class='warning_message' style='padding:7px;'>".lang('common_no_persons_to_display')."</div></tr></tr>";
+	}
+	
+	return $table_data_rows;
+}
+
+function get_education_data_row($about,$controller)
+{
+	
+	$CI =& get_instance();
+	$controller_name=strtolower(get_class($CI));
+	//$width = $controller->get_form_width();	die('ff0');
+$width = $controller->get_form_width();
+	$table_data_row='<tr>';	
+	$table_data_row.="<td style='text-align:center' width='3%'>
+	<input type='checkbox' id='person_$about->id_education' value='".$about->id."'/></td>";
+	$table_data_row.='<td style="text-align:center" width="2%">'.$about->id.'</td>';
+	$table_data_row.='<td style="padding-left:8px;text-align: center;" width="10%">'.$about->name_education.'</td>';	
+	$table_data_row.='<td style="text-align:center" width="2%" class="rightmost">'.anchor($controller_name."/view/$about->id/width~$width", lang('common_edit'),array('class'=>'thickbox','title'=>lang($controller_name.'_update'))).'</td>';		// link sửa chữa "sửa"
+	
+	$table_data_row.='</tr>';
+	
+	return $table_data_row;
+}
+
+
+
+
+/*
+Gets the html table to manage abouts.
+*/
+/*Begin education*/
+
+/*End education*/
+function get_profit_manage_table($people,$controller)
+{
+	$CI =& get_instance();
+	$table='<table class="tablesorter" id="sortable_table">';
+	
+	$headers = array('<input type="checkbox" id="select_all" />', 
+	lang('common_formula'),
+	lang('common_input1'),
+    lang('common_input7'),
+    lang('common_input8'),
+	'&nbsp');
+	$table.='<thead><tr>';
+
+	$count = 0;
+	foreach($headers as $header)
+	{
+		$count++;
+		
+		if ($count == 1)
+		{
+			$table.="<th class='leftmost'>$header</th>";
+		}
+		elseif ($count == count($headers))
+		{
+			$table.="<th class='rightmost'>$header</th>";
+		}
+		else
+		{
+			$table.="<th>$header</th>";		
+		}
+	}
+	$table.='</tr></thead><tbody>';
+	$table.=get_profit_manage_table_data_rows($people,$controller);
+	$table.='</tbody></table>';
+	return $table;
+}
+
+function get_profit_manage_table_data_rows($people,$controller)
+{
+	$CI =& get_instance();
+	$table_data_rows='';
+	
+	foreach($people->result() as $person)
+	{
+		$table_data_rows.=get_profit_data_row($person,$controller);
+	}
+	
+	if($people->num_rows()==0)
+	{
+		$table_data_rows.="<tr><td colspan='7'><div class='warning_message' style='padding:7px;'>".lang('common_no_persons_to_display')."</div></tr></tr>";
+	}
+	
+	return $table_data_rows;
+}
+
+function get_profit_data_row($person,$controller)
+{
+	$CI =& get_instance();
+	$controller_name=strtolower(get_class($CI));
+	$width = $controller->get_form_width();
+	//if($person->last_name == 0){$person->last_name = null;}
+	$start_of_time =  date('Y-m-d', 0);
+	$today = date('Y-m-d');	
+	//$link = site_url('customers/detail_customer_sale/'.$person->id);
+    $link = site_url('profit/detail_profit/'.$person->id);
+	$table_data_row='<tr>';	
+	$table_data_row.="<td width='5%'><input type='checkbox' id='person_$person->id' value='".$person->id."'/></td>";
+	$table_data_row.='<td width="15%"><a href="'.$link.'"  class="underline">'.$person->formula_name.'</a></td>';
+	//$table_data_row.='<td width="15%">'.$CI->City->get_info($person->city)->name.'</td>';
+	//$table_data_row.='<td width="30%">'.mailto($person->email,$person->email, array('class' => 'underline')).'</td>';
+	$table_data_row.='<td width="15%">'.$person->name.'</td>';
+	$table_data_row.='<td width="15%">'.$person->estimated_number.'</td>';	
+	$table_data_row.='<td width="15%">'.$person->transport.'</td>';	
+	$table_data_row.='<td width="5%" class="rightmost">'.anchor($controller_name."/view/$person->id/width~$width", lang('common_edit'),array('class'=>'thickbox','title'=>lang($controller_name.'_update')))
+	//.anchor("costs/add_new_cost/$person->id/width~$width", lang('common_cost'),array('class'=>'thickbox','title'=>'Thực hiện thu chi'))
+	.'</td>';
+	$table_data_row.='</tr>';
+	
+	return $table_data_row;
+}
+
+function get_abouts_manage_table($abouts,$controller)
+{
+	$CI =& get_instance();
+	$table='<table class="tablesorter" id="sortable_table">';
+	
+	$headers = array('<input type="checkbox" id="select_all" />', 
+	lang('abouts_id'),
+	lang('abouts_website'),
+	lang('abouts_phone_number'),
+	lang('abouts_email'),
+	lang('abouts_address'),
+	lang('abouts_name_eployee'),
+	//lang('abouts_yahoo'),
+	lang('abouts_skype'),
+	'&nbsp');
+	$table.='<thead><tr>';
+
+	$count = 0;
+	foreach($headers as $header)
+	{
+		$count++;
+		
+		if ($count == 1)
+		{
+			$table.="<th style='text-align:center' class='leftmost'>$header</th>";
+		}
+		elseif ($count == count($headers))
+		{
+			$table.="<th style='text-align:center' class='rightmost'>$header</th>";
+		}
+		else
+		{
+			$table.="<th style='text-align:center'>$header</th>";		
+		}
+	}
+	$table.='</tr></thead><tbody>';
+	$table.=get_abouts_manage_table_data_rows($abouts,$controller);
+	$table.='</tbody></table>';
+	return $table;
+}
+function get_abouts_manage_table_data_rows($abouts,$controller)
+{
+	$CI =& get_instance();
+	$table_data_rows='';
+	
+	foreach($abouts->result() as $about)
+	{
+		$table_data_rows.=get_about_data_row($about,$controller);
+	}
+	
+	if($abouts->num_rows()==0)
+	{
+		$table_data_rows.="<tr><td colspan='7'><div class='warning_message' style='padding:7px;'>".lang('common_no_persons_to_display')."</div></tr></tr>";
+	}
+	
+	return $table_data_rows;
+}
+
+function get_about_data_row($about,$controller)
+{
+	$CI =& get_instance();
+	$controller_name=strtolower(get_class($CI));
+	$width = $controller->get_form_width();
+	$table_data_row='<tr>';	
+	$table_data_row.="<td style='text-align:center' width='3%'><input type='checkbox' id='person_$about->id' value='".$about->id."'/></td>";
+	$table_data_row.='<td style="text-align:center" width="12%">'.$about->id.'</td>';
+	
+	$table_data_row.='<td style="padding-left:8px" width="20%">'.$about->website.'</td>';
+	$table_data_row.='<td style="padding-left:8px" width="5%">'.$about->phone_number.'</td>';
+	$table_data_row.='<td style="padding-left:8px" width="10%">'.$about->email.'</td>';
+	$table_data_row.='<td style="padding-left:8px" width="20%">'.$about->address.'</td>';
+	$table_data_row.='<td style="padding-left:8px" width="15%">'.$about->name_eployee.'</td>';	
+	//$table_data_row.='<td style="padding-left:25px" width="10%">'.$about->yahoo.'</td>';
+	$table_data_row.='<td style="padding-left:8px" width="13%">'.$about->skype.'</td>';
+	
+	$table_data_row.='<td style="text-align:center" width="2%" class="rightmost">'.anchor($controller_name."/view/$category->id_cat/width~$width", lang('common_edit'),array('class'=>'thickbox','title'=>lang($controller_name.'_update'))).'</td>';		// link sửa chữa "sửa"
+	
+	$table_data_row.='</tr>';
+	
+	return $table_data_row;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function get_slides_manage_table($slides,$controller)
+{
+	$CI =& get_instance();
+	$table='<table class="tablesorter" id="sortable_table">';
+	
+	$headers = array('<input type="checkbox" id="select_all" />', 
+	lang('slider_id'),
+	lang('slider_name'),
+	lang('slider_img'),
+	lang('slider_description'),
+	'&nbsp');
+	$table.='<thead><tr>';
+
+	$count = 0;
+	foreach($headers as $header)
+	{
+		$count++;
+		
+		if ($count == 1)
+		{
+			$table.="<th style='text-align:center' class='leftmost'>$header</th>";
+		}
+		elseif ($count == count($headers))
+		{
+			$table.="<th style='text-align:center' class='rightmost'>$header</th>";
+		}
+		else
+		{
+			$table.="<th style='text-align:center'>$header</th>";		
+		}
+	}
+	$table.='</tr></thead><tbody>';
+	$table.=get_slides_manage_table_data_rows($slides,$controller);
+	$table.='</tbody></table>';
+	return $table;
+}
+
+/*
+Gets the html data rows for the people.
+*/
+function get_slides_manage_table_data_rows($slides,$controller)
+{
+	$CI =& get_instance();
+	$table_data_rows='';
+	
+	foreach($slides->result() as $slide)
+	{
+		$table_data_rows.=get_slide_data_row($slide,$controller);
+	}
+	
+	if($slides->num_rows()==0)
+	{
+		$table_data_rows.="<tr><td colspan='7'><div class='warning_message' style='padding:7px;'>".lang('common_no_persons_to_display')."</div></tr></tr>";
+	}
+	
+	return $table_data_rows;
+}
+
+function get_slide_data_row($slide,$controller)
+{
+	$CI =& get_instance();
+	$controller_name=strtolower(get_class($CI));
+	$width = $controller->get_form_width();
+	$table_data_row='<tr>';	
+	$table_data_row.="<td style='text-align:center' width='5%'><input type='checkbox' id='person_$slide->id' value='".$slide->id."'/></td>";
+	$table_data_row.='<td style="text-align:center" width="15%">'.$slide->id.'</td>';
+	$table_data_row.='<td style="padding-left:20px" width="28%"><p style="width:230px">'.$slide->name.'</p></td>';	
+	$table_data_row.="<td style='padding-left:20px' width='20%'><img class='ImgList' style='width:156px; height:60px; margin:5px 0 5px 10px;' src='".base_url()."images/slider/"."".$slide->img."'/></td>";	
+	$table_data_row.='<td style="padding-left:20px" width="28%"><p style="width:170px">'.$slide->description.'</p></td>';	
+	$table_data_row.='<td style="text-align:center" width="5%" class="rightmost">'.anchor($controller_name."/view/$category->id_cat/width~$width", lang('common_edit'),array('class'=>'thickbox','title'=>lang($controller_name.'_update'))).'</td>';		// link sửa chữa "sửa"
+	
+	$table_data_row.='</tr>';
+	
+	return $table_data_row;
+}
+
+
+//////////////////
+/*
+Gets the html table to manage part.
+*/
+function get_part_manage_table($part,$controller)
+{
+	$CI =& get_instance();
+	$table='<table class="tablesorter" id="sortable_table">';
+	
+	$headers = array('<input type="checkbox" id="select_all" />', 
+	lang('part_id_cat'),
+	lang('categories_name'),
+	lang('categories_image'),
+	'&nbsp');
+	$table.='<thead><tr>';
+
+	$count = 0;
+	foreach($headers as $header)
+	{
+		$count++;
+		
+		if ($count == 1)
+		{
+			$table.="<th style='text-align:center' class='leftmost'>$header</th>";
+		}
+		elseif ($count == count($headers))
+		{
+			$table.="<th style='text-align:center' class='rightmost'>$header</th>";
+		}
+		else
+		{
+			$table.="<th style='text-align:center'>$header</th>";		
+		}
+	}
+	$table.='</tr></thead><tbody>';
+	$table.=get_part_manage_table_data_rows($part,$controller);
+	$table.='</tbody></table>';
+	return $table;
+}
+
+/*
+Gets the html data rows for the part.
+*/
+function get_part_manage_table_data_rows($part,$controller)
+{
+	$CI =& get_instance();
+	$table_data_rows='';
+	
+	foreach($part->result() as $category)
+	{
+		$table_data_rows.=get_category_data_row($category,$controller);
+	}
+	
+	if($part->num_rows()==0)
+	{
+		$table_data_rows.="<tr><td colspan='7'><div class='warning_message' style='padding:7px;'>".lang('common_no_persons_to_display')."</div></tr></tr>";
+	}
+	
+	return $table_data_rows;
+}
+
+function get_part_data_row($category,$controller)
+{
+	$CI =& get_instance();
+	$controller_name=strtolower(get_class($CI));
+	$width = $controller->get_form_width();
+	$table_data_row='<tr>';	
+	$table_data_row.="<td style='text-align:center' width='5%'><input type='checkbox' id='person_$category->id_cat' value='".$category->id_cat."'/></td>";
+	$table_data_row.='<td style="text-align:center" width="23%">'.$category->id_cat.'</td>';
+	$table_data_row.='<td style="padding-left:25px" width="50%"><p style="width:343px">'.$category->name.'</p></td>';	
+	$table_data_row.="<td style='padding-left:25px' width='25%'><img class='ImgList' style='width:60px; height:60px; margin:5px 0 5px 5px;' src='http://localhost:8888/pos2014/NEWPOS_2014/front-end/".$category->anh."'/></td>";	
+	$table_data_row.='<td style="text-align:center" width="2%" class="rightmost">'.anchor($controller_name."/view/$category->id_cat/width~$width", lang('common_edit'),array('class'=>'thickbox','title'=>lang($controller_name.'_update'))).'</td>';		// link sửa chữa "sửa"
+	
+	$table_data_row.='</tr>';
+	
+	return $table_data_row;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+//////////////////
+/*
+Gets the html table to manage categories.
+*/
+function get_categories_manage_table($categories,$controller)
+{
+	$CI =& get_instance();
+	$table='<table class="tablesorter" id="sortable_table">';
+	
+	$headers = array('<input type="checkbox" id="select_all" />', 
+	lang('categories_id_cat'),
+	lang('categories_name'),
+	lang('categories_image'),
+	'&nbsp');
+	$table.='<thead><tr>';
+
+	$count = 0;
+	foreach($headers as $header)
+	{
+		$count++;
+		
+		if ($count == 1)
+		{
+			$table.="<th style='text-align:center' class='leftmost'>$header</th>";
+		}
+		elseif ($count == count($headers))
+		{
+			$table.="<th style='text-align:center' class='rightmost'>$header</th>";
+		}
+		else
+		{
+			$table.="<th style='text-align:center'>$header</th>";		
+		}
+	}
+	$table.='</tr></thead><tbody>';
+	$table.=get_categories_manage_table_data_rows($categories,$controller);
+	$table.='</tbody></table>';
+	return $table;
+}
+
+/*
+Gets the html data rows for the people.
+*/
+function get_categories_manage_table_data_rows($categories,$controller)
+{
+	$CI =& get_instance();
+	$table_data_rows='';
+	
+	foreach($categories->result() as $category)
+	{
+		$table_data_rows.=get_category_data_row($category,$controller);
+	}
+	
+	if($categories->num_rows()==0)
+	{
+		$table_data_rows.="<tr><td colspan='7'><div class='warning_message' style='padding:7px;'>".lang('common_no_persons_to_display')."</div></tr></tr>";
+	}
+	
+	return $table_data_rows;
+}
+
+function get_category_data_row($category,$controller)
+{
+	$CI =& get_instance();
+	$controller_name=strtolower(get_class($CI));
+	$width = $controller->get_form_width();
+	$table_data_row='<tr>';	
+	$table_data_row.="<td style='text-align:center' width='5%'><input type='checkbox' id='person_$category->id_cat' value='".$category->id_cat."'/></td>";
+	$table_data_row.='<td style="text-align:center" width="23%">'.$category->id_cat.'</td>';
+	$table_data_row.='<td style="padding-left:25px" width="50%"><p style="width:343px">'.$category->name.'</p></td>';	
+	$table_data_row.="<td style='padding-left:25px' width='25%'><img class='ImgList' style='width:60px; height:60px; margin:5px 0 5px 5px;' src='http://localhost:8888/pos2014/NEWPOS_2014/front-end/".$category->anh."'/></td>";	
+	$table_data_row.='<td style="text-align:center" width="2%" class="rightmost">'.anchor($controller_name."/view/$category->id_cat/width~$width", lang('common_edit'),array('class'=>'thickbox','title'=>lang($controller_name.'_update'))).'</td>';		// link sửa chữa "sửa"
+	
+	$table_data_row.='</tr>';
+	
+	return $table_data_row;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/*
+Gets the html table to manage people.
+*/
+function get_people_manage_table($people,$controller)
+{
+	$CI =& get_instance();
+	$table='<table class="tablesorter" id="sortable_table">';
+	
+	$headers = array('<input type="checkbox" id="select_all" />', 
+	lang('common_name'),
+	lang('common_city'),
+	lang('common_email'),
+	lang('common_phone_number'),
+	lang('common_birth_date'),
+	'&nbsp');
+	$table.='<thead><tr>';
+
+	$count = 0;
+	foreach($headers as $header)
+	{
+		$count++;
+		
+		if ($count == 1)
+		{
+			$table.="<th class='leftmost'>$header</th>";
+		}
+		elseif ($count == count($headers))
+		{
+			$table.="<th class='rightmost'>$header</th>";
+		}
+		else
+		{
+			$table.="<th>$header</th>";		
+		}
+	}
+	$table.='</tr></thead><tbody>';
+	$table.=get_people_manage_table_data_rows($people,$controller);
+	$table.='</tbody></table>';
+	return $table;
+}
+
+/*
+Gets the html data rows for the people.
+*/
+function get_people_manage_table_data_rows($people,$controller)
+{
+	$CI =& get_instance();
+	$table_data_rows='';
+	
+	foreach($people->result() as $person)
+	{
+		$table_data_rows.=get_person_data_row($person,$controller);
+	}
+	
+	if($people->num_rows()==0)
+	{
+		$table_data_rows.="<tr><td colspan='7'><div class='warning_message' style='padding:7px;'>".lang('common_no_persons_to_display')."</div></tr></tr>";
+	}
+	
+	return $table_data_rows;
+}
+
+function get_person_data_row($person,$controller)
+{
+	$CI =& get_instance();
+	$controller_name=strtolower(get_class($CI));
+	$width = $controller->get_form_width();
+	if($person->last_name == 0){$person->last_name = null;}
+	$start_of_time =  date('Y-m-d', 0);
+	$today = date('Y-m-d');	
+	$link = site_url('customers/detail_customer_sale/'.$person->person_id);
+	$table_data_row='<tr>';	
+	$table_data_row.="<td width='5%'><input type='checkbox' id='person_$person->person_id' value='".$person->person_id."'/></td>";
+	$table_data_row.='<td width="25%"><p style="width:170px;"><a href="'.$link.'" class="underline">'.$person->first_name.'&nbsp'.$person->last_name.'</a></p></td>';
+	$table_data_row.='<td width="13%">'.$CI->City->get_info($person->city)->name.'</td>';
+	$table_data_row.='<td width="23%"><p style="width:150px;">'.mailto($person->email,$person->email, array('class' => 'underline')).'</p></td>';
+	$table_data_row.='<td width="14%">'.$person->phone_number.'</td>';	
+	$table_data_row.='<td width="11%">'.$person->birth_date.'</td>';	
+	$table_data_row.='<td width="5%" class="rightmost">'.anchor($controller_name."/view/$person->person_id/width~$width", lang('common_edit'),array('class'=>'thickbox','title'=>lang($controller_name.'_update')))
+	.anchor("costs/add_new_cost/$person->person_id/width~$width", lang('common_cost'),array('class'=>'thickbox','style'=>'font-size :11px;font-family: Time New Roman','title'=>'Thực hiện thu chi'))
+	.'</td>';
+	$table_data_row.='</tr>';
+	
+	return $table_data_row;
+}
+
+
+/*
+Gets the html table to manage suppliers.
+*/
+function get_supplier_manage_table($suppliers,$controller)
+{
+	$CI =& get_instance();
+	$table='<table class="tablesorter" id="sortable_table">';	
+	$headers = array('<input type="checkbox" id="select_all" />',
+	lang('suppliers_company_name'),
+	lang('common_first_name'),
+	lang('common_email'),
+	lang('common_phone_number'),
+	'&nbsp');
+	$table.='<thead><tr>';
+	$count = 0;
+	foreach($headers as $header)
+	{
+		$count++;
+		
+		if ($count == 1)
+		{
+			$table.="<th class='leftmost'>$header</th>";
+		}
+		elseif ($count == count($headers))
+		{
+			$table.="<th class='rightmost'>$header</th>";
+		}
+		else
+		{
+			$table.="<th>$header</th>";		
+		}
+	}
+	
+	$table.='</tr></thead><tbody>';
+	$table.=get_supplier_manage_table_data_rows($suppliers,$controller);
+	$table.='</tbody></table>';
+	return $table;
+}
+
+/*
+Gets the html data rows for the supplier.
+*/
+function get_supplier_manage_table_data_rows($suppliers,$controller)
+{
+	$CI =& get_instance();
+	$table_data_rows='';
+	
+	foreach($suppliers->result() as $supplier)
+	{
+		$table_data_rows.=get_supplier_data_row($supplier,$controller);
+	}
+	
+	if($suppliers->num_rows()==0)
+	{
+		$table_data_rows.="<tr><td colspan='8'><div class='warning_message' style='padding:7px;'>".lang('common_no_persons_to_display')."</div></tr></tr>";
+	}
+	
+	return $table_data_rows;
+}
+
+function get_supplier_data_row($supplier,$controller)
+{
+	$CI =& get_instance();
+	$controller_name=strtolower(get_class($CI));
+	$width = $controller->get_form_width();
+
+	$table_data_row='<tr>';
+	$table_data_row.="<td width='5%'><input type='checkbox' id='person_$supplier->person_id' value='".$supplier->person_id."'/></td>";
+	$table_data_row.='<td width="25%"><p style="width:175px">'.$supplier->company_name.'</p></td>';
+	$table_data_row.='<td width="25%"><p style="width:175px">'.$supplier->first_name.'</p></td>';
+	$table_data_row.='<td width="25%"><p style="width:175px">'.mailto($supplier->email,$supplier->email).'</p></td>';
+	$table_data_row.='<td width="15%">'.$supplier->phone_number.'</td>';		
+	$table_data_row.='<td width="5%" class="rightmost">'.anchor($controller_name."/view/$supplier->person_id/width~$width", lang('common_edit'),array('class'=>'thickbox','title'=>lang($controller_name.'_update')))
+	.anchor("costs/add_new_cost/$supplier->person_id/width~$width", lang('common_cost'),array('class'=>'thickbox','title'=>'Thực hiện thu chi'))
+	.'</td>';				
+	$table_data_row.='</tr>';
+	return $table_data_row;
+}
+/*
+Gets the html table to manage items.
+*/
+function get_items_manage_table($items,$controller)
+{
+	$CI =& get_instance();
+	$has_cost_price_permission = $CI->Employee->has_module_action_permission('items','see_cost_price', $CI->Employee->get_logged_in_employee_info()->person_id);
+	$table='<table class="tablesorter" id="sortable_table">';
+	
+	$headers = array('<input type="checkbox" id="select_all" />', 
+	$CI->lang->line('items_item_number'),
+	$CI->lang->line('items_name'),
+	$CI->lang->line('items_images'),
+	$CI->lang->line('items_category'),
+	
+	);
+	
+	// if($has_cost_price_permission)
+	// {
+		// $headers = array_merge($headers, array($CI->lang->line('items_cost_price')));
+	// }
+	
+	$headers = array_merge($headers, array(
+	$CI->lang->line('items_unit_price'),
+	// $CI->lang->line('items_tax_percents'),
+	$CI->lang->line('items_quantity'),
+	$CI->lang->line('items_inventory'),
+	'&nbsp;'
+	));
+	
+	$table.='<thead><tr>';
+	$count = 0;
+	foreach($headers as $header)
+	{
+		$count++;
+		
+		if ($count == 1)
+		{
+			$table.="<th class='leftmost'>$header</th>";
+		}
+		elseif ($count == count($headers))
+		{
+			$table.="<th class='rightmost'>$header</th>";
+		}
+		else
+		{
+			$table.="<th>$header</th>";		
+		}
+	}
+	$table.='</tr></thead><tbody>';
+	$table.=get_items_manage_table_data_rows($items,$controller);
+	$table.='</tbody></table>';
+	return $table;
+}
+
+/*
+Gets the html data rows for the items.
+*/
+function get_items_manage_table_data_rows($items,$controller)
+{
+	$CI =& get_instance();
+	$table_data_rows='';
+	
+	foreach($items->result() as $item)
+	{
+		$table_data_rows.=get_item_data_row($item,$controller);
+	}
+	
+	if($items->num_rows()==0)
+	{
+		$table_data_rows.="<tr><td colspan='11'><div class='warning_message' style='padding:7px;'>".lang('items_no_items_to_display')."</div></tr></tr>";
+	}
+	
+	return $table_data_rows;
+}
+
+function get_item_data_row($item,$controller)
+{
+	$CI =& get_instance();
+	$has_cost_price_permission = $CI->Employee->has_module_action_permission('items','see_cost_price', $CI->Employee->get_logged_in_employee_info()->person_id);
+	$item_tax_info=$CI->Item_taxes->get_info($item->item_id);
+	$tax_percents = '';
+	foreach($item_tax_info as $tax_info)
+	{
+		$tax_percents.=$tax_info['percent']. '%, ';
+	}
+	$tax_percents=substr($tax_percents, 0, -2);
+	$controller_name=strtolower(get_class($CI));
+	$width = $controller->get_form_width();
+	$cat_name = $CI->Category->get_info($item->category);
+	$table_data_row='<tr>';
+	$table_data_row.="<td width='2%'><input type='checkbox' id='item_$item->item_id' value='".$item->item_id."'/></td>";
+	$table_data_row.='<td width="13%">'.$item->item_number.'</td>';
+	$table_data_row.='<td width="18%">'.$item->name.'</td>';
+	//$table_data_row.="<td width='12%'><p style='float:left;width:90px'><img class='ImgList' src='".$item->anh_con."'/></p></td>";
+	$table_data_row.="<td width='12%'><img class='ImgList' style='width:60px; height:60px; margin:5px 0 5px 5px;' src='http://localhost:8888/pos2014/NEWPOS_2014/front-end/".$item->anh."'/></td>";
+
+	$table_data_row.='<td width="18%">'.$cat_name->name.'</td>';
+	// if ($has_cost_price_permission)
+	// {
+		// $table_data_row.='<td width="11%" align="right">'.to_currency($item->cost_price).'</td>';
+	// }
+	$table_data_row.='<td width="12%" align="right">'.to_currency($item->unit_price).'</td>';
+	// $table_data_row.='<td width="11%">'.$tax_percents.'</td>';	
+	$table_data_row.='<td width="10%">'.$item->quantity.'</td>';
+	$table_data_row.='<td width="11%">'.anchor($controller_name."/inventory/$item->item_id/width~$width", lang('common_inv').'<br/>',array('class'=>'thickbox','title'=>lang($controller_name.'_count'))).'&nbsp;&nbsp;'.anchor($controller_name."/count_details/$item->item_id/width~$width", lang('common_det'),array('class'=>'thickbox','title'=>lang($controller_name.'_details_count'))).' </td>';//inventory details	
+	
+	$table_data_row.='<td width="3%" class="rightmost">'.anchor($controller_name."/view/$item->item_id/width~$width", lang('common_edit'),array('class'=>'thickbox','title'=>lang($controller_name.'_update'))).'</td>';		
+	//$table_data_row.='<td>'.anchor($controller_name."http://localhost:6789/kidsstyle_full/products/control/edit/$item->item_id", lang('common_edit_front-end'),array('class'=>'thickbox','title'=>lang($controller_name.'_update'))).'</td>';
+	
+	$table_data_row.='</tr>';
+	return $table_data_row;
+}
+
+
+/*
+Gets the html table to manage costs.
+*/
+function get_costs_manage_table($costs,$controller)
+{ 
+	$CI =& get_instance();
+	
+	$table='<table class="tablesorter" id="sortable_table">';
+	
+	$headers = array('<input type="checkbox" id="select_all" />', 
+	$CI->lang->line('costs_date'),
+	'Số chứng từ',
+	'Ngày chứng từ',
+	$CI->lang->line('costs_name'),
+	'TK Đối ứng',
+	'Tên KH (NCC)',
+	$CI->lang->line('costs_thu'),
+	$CI->lang->line('costs_chi'),
+	'&nbsp;'
+	);
+
+	$table.='<thead><tr>';
+	$count = 0;
+	foreach($headers as $header)
+	{
+		$count++;
+		
+		if ($count == 1)
+		{
+			$table.="<th class='leftmost'>$header</th>";
+		}
+		elseif ($count == count($headers))
+		{
+			$table.="<th class='rightmost'>$header</th>";
+		}
+		else
+		{
+			$table.="<th>$header</th>";		
+		}
+	}
+	$table.='</tr></thead><tbody>';
+	$table.=get_costs_manage_table_data_rows($costs,$controller);
+	$table.='</tbody></table>';
+	return $table; 
+}
+
+/*
+Gets the html data rows for the costs.
+*/
+function get_costs_manage_table_data_rows($costs,$controller)
+{
+	$CI =& get_instance();
+	$table_data_rows='';
+	
+	foreach($costs->result() as $cost)
+	{
+		$table_data_rows.=get_costs_data_row($cost,$controller);
+	}
+	
+	if($costs->num_rows()==0)
+	{
+		$table_data_rows.="<tr><td colspan='6'><div class='warning_message' style='padding:7px;'>".lang('no_cost_to_display')."</div></tr></tr>";
+	}
+	
+	return $table_data_rows;
+}
+
+function get_costs_data_row($cost,$controller)
+{
+	$CI =& get_instance();
+	$controller_name=strtolower(get_class($CI));
+	$width = $controller->get_form_width();
+	$cost_id = $CI->Cost->get_info_name($cost->name);
+	$table_data_row='<tr>';
+	
+	$table_data_row.="<td width='3%'><input type='checkbox' id='item_$cost->id_cost' value='".$cost->id_cost."'/></td>";
+	$table_data_row.='<td width="11%">'.$cost->date.'</td>';
+	$table_data_row.='<td width="11%">'.$cost->chungtu.'</td>';
+	$table_data_row.='<td width="11%">'.$cost->cost_date_ct.'</td>';
+	$table_data_row.='<td width="15%">'.$cost_id->cost_name.'</td>';
+	$table_data_row.='<td width="15%">'.$cost->tk_du.'</td>';
+	$table_data_row.='<td width="20%">'.$CI->Person->get_info($cost->id_customer)->first_name.'</td>';
+	if($cost->tien_thu > 0){
+	$table_data_row.='<td width="15%">'.to_currency($cost->tien_thu).'</td>';
+	} else {
+	$table_data_row.='<td width="15%"></td>';
+	}
+	if($cost->tien_chi > 0){
+	$table_data_row.='<td width="15%">'.to_currency($cost->tien_chi).'</td>';
+	} else {
+	$table_data_row.='<td width="15%"></td>';
+	}
+	
+	$table_data_row.='<td width="4%" class="rightmost">'.anchor($controller_name."/view/$cost->id_cost/width~$width", lang('common_edit'),array('class'=>'thickbox','title'=>lang($controller_name.'_update')))
+	.anchor("costs/export_cost_one/$cost->id_cost", lang('common_excel_tdl'))
+	.'</td>';		
+	$table_data_row.='</tr>';
+	return $table_data_row;
+}
+
+/*
+Gets the html table to manage giftcards.
+*/
+function get_giftcards_manage_table( $giftcards, $controller )
+{
+	$CI =& get_instance();
+	
+	$table='<table class="tablesorter" id="sortable_table">';
+	
+	$headers = array('<input type="checkbox" id="select_all" />', 
+	lang('giftcards_giftcard_number'),
+	lang('giftcards_card_value'),
+	lang('giftcards_customer_name'),
+	'&nbsp', 
+	);
+	
+	$table.='<thead><tr>';
+	$count = 0;
+	foreach($headers as $header)
+	{
+		$count++;
+		
+		if ($count == 1)
+		{
+			$table.="<th class='leftmost'>$header</th>";
+		}
+		elseif ($count == count($headers))
+		{
+			$table.="<th class='rightmost'>$header</th>";
+		}
+		else
+		{
+			$table.="<th>$header</th>";		
+		}
+	}
+	$table.='</tr></thead><tbody>';
+	$table.=get_giftcards_manage_table_data_rows( $giftcards, $controller );
+	$table.='</tbody></table>';
+	return $table;
+}
+
+/*
+Gets the html data rows for the giftcard.
+*/
+function get_giftcards_manage_table_data_rows( $giftcards, $controller )
+{
+	$CI =& get_instance();
+	$table_data_rows='';
+	
+	foreach($giftcards->result() as $giftcard)
+	{
+		$table_data_rows.=get_giftcard_data_row( $giftcard, $controller );
+	}
+	
+	if($giftcards->num_rows()==0)
+	{
+		$table_data_rows.="<tr><td colspan='11'><div class='warning_message' style='padding:7px;'>".lang('giftcards_no_giftcards_to_display')."</div></tr></tr>";
+	}
+	
+	return $table_data_rows;
+}
+
+function get_giftcard_data_row($giftcard,$controller)
+{
+	$CI =& get_instance();
+	$controller_name=strtolower(get_class($CI));
+	$width = $controller->get_form_width();
+	$link = site_url('reports/detailed_'.$controller_name.'/'.$giftcard->customer_id.'/0');
+	$cust_info = $CI->Customer->get_info($giftcard->customer_id);
+	
+	$table_data_row='<tr>';
+	$table_data_row.="<td width='3%'><input type='checkbox' id='giftcard_$giftcard->giftcard_id' value='".$giftcard->giftcard_id."'/></td>";
+	$table_data_row.='<td width="15%">'.$giftcard->giftcard_number.'</td>';
+	$table_data_row.='<td width="20%">'.to_currency($giftcard->value).'</td>';
+	$table_data_row.='<td width="15%"><a class="underline" href="'.$link.'">'.$cust_info->first_name. ' '.$cust_info->last_name.'</a></td>';
+	$table_data_row.='<td width="5%" class="rightmost">'.anchor($controller_name."/view/$giftcard->giftcard_id/width~$width", lang('common_edit'),array('class'=>'thickbox','title'=>lang($controller_name.'_update'))).'</td>';		
+	
+	$table_data_row.='</tr>';
+	return $table_data_row;
+}
+
+/*
+Gets the html table to manage item kits.
+*/
+function get_item_kits_manage_table( $item_kits, $controller )
+{
+	$CI =& get_instance();
+	
+	$table='<table class="tablesorter" id="sortable_table">';
+	
+	$headers = array('<input type="checkbox" id="select_all" />', 
+	lang('items_item_number'),
+	lang('item_kits_name'),
+	lang('item_kits_description'),
+	lang('items_unit_price'),
+	lang('items_tax_percents'),
+	'&nbsp', 
+	);
+	
+	$table.='<thead><tr>';
+	$count = 0;
+	foreach($headers as $header)
+	{
+		$count++;
+		
+		if ($count == 1)
+		{
+			$table.="<th class='leftmost'>$header</th>";
+		}
+		elseif ($count == count($headers))
+		{
+			$table.="<th class='rightmost'>$header</th>";
+		}
+		else
+		{
+			$table.="<th>$header</th>";		
+		}
+	}
+	$table.='</tr></thead><tbody>';
+	$table.=get_item_kits_manage_table_data_rows( $item_kits, $controller );
+	$table.='</tbody></table>';
+	return $table;
+}
+
+/*
+Gets the html data rows for the item kits.
+*/
+function get_item_kits_manage_table_data_rows( $item_kits, $controller )
+{
+	$CI =& get_instance();
+	$table_data_rows='';
+	
+	foreach($item_kits->result() as $item_kit)
+	{
+		$table_data_rows.=get_item_kit_data_row( $item_kit, $controller );
+	}
+	
+	if($item_kits->num_rows()==0)
+	{
+		$table_data_rows.="<tr><td colspan='11'><div class='warning_message' style='padding:7px;'>".lang('item_kits_no_item_kits_to_display')."</div></tr></tr>";
+	}
+	
+	return $table_data_rows;
+}
+
+function get_item_kit_data_row($item_kit,$controller)
+{
+
+	$CI =& get_instance();
+	
+	$item_kit_tax_info=$CI->Item_kit_taxes->get_info($item_kit->item_kit_id);
+	$tax_percents = '';
+	foreach($item_kit_tax_info as $tax_info)
+	{
+		$tax_percents.=$tax_info['percent']. '%, ';
+	}
+	$tax_percents=substr($tax_percents, 0, -2);
+
+	$controller_name=strtolower(get_class($CI));
+	$width = $controller->get_form_width();
+
+	$table_data_row='<tr>';
+	$table_data_row.="<td width='3%'><input type='checkbox' id='item_kit_$item_kit->item_kit_id' value='".$item_kit->item_kit_id."'/></td>";
+	$table_data_row.='<td width="15%">'.$item_kit->item_kit_number.'</td>';
+	$table_data_row.='<td width="15%">'.$item_kit->name.'</td>';
+	$table_data_row.='<td width="20%">'.$item_kit->description.'</td>';
+	$table_data_row.='<td width="20%" align="right">'.(!is_null($item_kit->unit_price) ? to_currency($item_kit->unit_price) : '').'</td>';
+	$table_data_row.='<td width="20%">'.$tax_percents.'</td>';
+	$table_data_row.='<td width="5%" class="rightmost">'.anchor($controller_name."/view/$item_kit->item_kit_id/width~$width", lang('common_edit'),array('class'=>'thickbox','title'=>lang($controller_name.'_update'))).'</td>';
+	$table_data_row.='</tr>';
+	return $table_data_row;
+}
+/*long.dk*/
+/* chung tu */
+function get_chungtu_manage_table($customer_type,$controller)
+{
+	$CI =& get_instance();
+	$table='<table class="tablesorter" id="sortable_table">';
+	$headers = array('<input type="checkbox" id="select_all" />', 
+	lang('common_chungtu_id'),
+	lang('common_chungtu_name'),
+	'&nbsp');
+	$table.='<thead><tr>';
+
+	$count = 0;
+	foreach($headers as $header)
+	{
+		$count++;
+		
+		if ($count == 1)
+		{
+			$table.="<th class='leftmost'>$header</th>";
+		}
+		elseif ($count == count($headers))
+		{
+			$table.="<th class='rightmost'>$header</th>";
+		}
+		else
+		{
+			$table.="<th>$header</th>";		
+		}
+	}
+	$table.='</tr></thead><tbody>';
+	$table.=get_chungtu_manage_table_data_rows($customer_type,$controller);
+	$table.='</tbody></table>';
+	return $table;
+}
+function get_chungtu_manage_table_data_rows($var_type,$controller){
+	$CI =& get_instance();
+	$table_data_rows='';
+	
+	foreach($var_type->result() as $customer)
+	{
+		$table_data_rows.=get_chungtu_data_row($customer,$controller);
+	}
+	
+	if($var_type->num_rows()==0)
+	{
+		$table_data_rows.="<tr><td colspan='7'><div class='warning_message' style='padding:7px;'>".lang('common_no_persons_to_display')."</div></tr></tr>";
+	}
+	
+	return $table_data_rows;
+
+}
+function get_chungtu_data_row($var,$controller)
+{
+	 $CI =& get_instance();
+	$controller_name=strtolower(get_class($CI));
+	$width = $controller->get_form_width();
+	$table_data_row='<tr>';	
+	$table_data_row.="<td width='5%'><input type='checkbox' id='$var->id' name='type[]' value='".$var->id."'/></td>";
+	$table_data_row.='<td width="15%">'.$var->id.'</td>';
+	$table_data_row.='<td width="50%">'.$var->name.'</td>';	
+	$table_data_row.='<td width="5%" class="rightmost">'.anchor($controller_name."/view/$var->id/width~$width", lang('common_edit'),array('class'=>'thickbox','title'=>lang($controller_name.'_update'))).'</td>';
+	$table_data_row.='</tr>'; 
+	
+	return $table_data_row;
+}
+/* end chung tu */
+/* dttc */
+function get_dttc_manage_table($customer_type,$controller)
+{
+	$CI =& get_instance();
+	$table='<table class="tablesorter" id="sortable_table">';
+	$headers = array('<input type="checkbox" id="select_all" />', 
+	lang('common_id'),
+	lang('common_name_longdk'),
+	'&nbsp');
+	$table.='<thead><tr>';
+
+	$count = 0;
+	foreach($headers as $header)
+	{
+		$count++;
+		
+		if ($count == 1)
+		{
+			$table.="<th class='leftmost'>$header</th>";
+		}
+		elseif ($count == count($headers))
+		{
+			$table.="<th class='rightmost'>$header</th>";
+		}
+		else
+		{
+			$table.="<th>$header</th>";		
+		}
+	}
+	$table.='</tr></thead><tbody>';
+	$table.=get_dttc_manage_table_data_rows($customer_type,$controller);
+	$table.='</tbody></table>';
+	return $table;
+}
+function get_dttc_manage_table_data_rows($customer_type,$controller){
+	$CI =& get_instance();
+	$table_data_rows='';
+	
+	foreach($customer_type->result() as $customer)
+	{
+		$table_data_rows.=get_dttc_data_row($customer,$controller);
+	}
+	
+	if($customer_type->num_rows()==0)
+	{
+		$table_data_rows.="<tr><td colspan='7'><div class='warning_message' style='padding:7px;'>".lang('common_no_persons_to_display')."</div></tr></tr>";
+	}
+	
+	return $table_data_rows;
+
+}
+function get_dttc_data_row($customer,$controller)
+{
+	 $CI =& get_instance();
+	$controller_name=strtolower(get_class($CI));
+	$width = $controller->get_form_width();
+	$table_data_row='<tr>';	
+	$table_data_row.="<td width='5%'><input type='checkbox' id='$customer->id' name='type[]' value='".$customer->id."'/></td>";
+	$table_data_row.='<td width="15%">'.$customer->id.'</td>';
+	$table_data_row.='<td width="50%"><a href="dttcs/lapkehoach/'.$customer->id.'">'.$customer->name.'</a></td>';	
+	$table_data_row.='<td width="5%" class="rightmost">'.anchor($controller_name."/view/$customer->id/width~$width", lang('common_edit'),array('class'=>'thickbox','title'=>lang($controller_name.'_update'))).'</td>';
+	$table_data_row.='</tr>'; 
+	
+	return $table_data_row;
+}
+/* end dttc */
+/* tài sản */
+function get_asset_manage_table($customer_type,$controller)
+{
+	$CI =& get_instance();
+	$table='<table class="tablesorter" id="sortable_table">';
+	$headers = array('<input type="checkbox" id="select_all" />', 
+	lang('common_asset_id'),
+	lang('common_asset_name'),
+	'&nbsp');
+	$table.='<thead><tr>';
+
+	$count = 0;
+	foreach($headers as $header)
+	{
+		$count++;
+		
+		if ($count == 1)
+		{
+			$table.="<th class='leftmost'>$header</th>";
+		}
+		elseif ($count == count($headers))
+		{
+			$table.="<th class='rightmost'>$header</th>";
+		}
+		else
+		{
+			$table.="<th>$header</th>";		
+		}
+	}
+	$table.='</tr></thead><tbody>';
+	$table.=get_asset_manage_table_data_rows($customer_type,$controller);
+	$table.='</tbody></table>';
+	return $table;
+}
+function get_asset_manage_table_data_rows($customer_type,$controller){
+	$CI =& get_instance();
+	$table_data_rows='';
+	
+	foreach($customer_type->result() as $customer)
+	{
+		$table_data_rows.=get_asset_data_row($customer,$controller);
+	}
+	
+	if($customer_type->num_rows()==0)
+	{
+		$table_data_rows.="<tr><td colspan='7'><div class='warning_message' style='padding:7px;'>".lang('common_no_persons_to_display')."</div></tr></tr>";
+	}
+	
+	return $table_data_rows;
+
+}
+function get_asset_data_row($customer,$controller)
+{
+	 $CI =& get_instance();
+	$controller_name=strtolower(get_class($CI));
+	$width = $controller->get_form_width();
+	$table_data_row='<tr>';	
+	$table_data_row.="<td width='5%'><input type='checkbox' id='$customer->id' name='type[]' value='".$customer->id."'/></td>";
+	$table_data_row.='<td width="15%">'.$customer->id.'</td>';
+	$table_data_row.='<td width="50%">'.$customer->name.'</td>';	
+	$table_data_row.='<td width="5%" class="rightmost">'.anchor($controller_name."/view/$customer->id/width~$width", lang('common_edit'),array('class'=>'thickbox','title'=>lang($controller_name.'_update'))).'</td>';
+	$table_data_row.='</tr>'; 
+	
+	return $table_data_row;
+}
+/* end tài sản */
+/* công cụ */
+function get_congcu_manage_table($customer_type,$controller)
+{
+	$CI =& get_instance();
+	$table='<table class="tablesorter" id="sortable_table">';
+	$headers = array('<input type="checkbox" id="select_all" />', 
+	lang('common_asset_id'),
+	lang('common_asset_name'),
+	'&nbsp');
+	$table.='<thead><tr>';
+
+	$count = 0;
+	foreach($headers as $header)
+	{
+		$count++;
+		
+		if ($count == 1)
+		{
+			$table.="<th class='leftmost'>$header</th>";
+		}
+		elseif ($count == count($headers))
+		{
+			$table.="<th class='rightmost'>$header</th>";
+		}
+		else
+		{
+			$table.="<th>$header</th>";		
+		}
+	}
+	$table.='</tr></thead><tbody>';
+	$table.=get_congcu_manage_table_data_rows($customer_type,$controller);
+	$table.='</tbody></table>';
+	return $table;
+}
+function get_congcu_manage_table_data_rows($customer_type,$controller){
+	$CI =& get_instance();
+	$table_data_rows='';
+	
+	foreach($customer_type->result() as $customer)
+	{
+		$table_data_rows.=get_congcu_data_row($customer,$controller);
+	}
+	
+	if($customer_type->num_rows()==0)
+	{
+		$table_data_rows.="<tr><td colspan='7'><div class='warning_message' style='padding:7px;'>".lang('common_no_persons_to_display')."</div></tr></tr>";
+	}
+	
+	return $table_data_rows;
+
+}
+function get_congcu_data_row($customer,$controller)
+{
+	 $CI =& get_instance();
+	$controller_name=strtolower(get_class($CI));
+	$width = $controller->get_form_width();
+	$table_data_row='<tr>';	
+	$table_data_row.="<td width='5%'><input type='checkbox' id='$customer->id' name='type[]' value='".$customer->id."'/></td>";
+	$table_data_row.='<td width="15%">'.$customer->id.'</td>';
+	$table_data_row.='<td width="50%">'.$customer->name.'</td>';	
+	$table_data_row.='<td width="5%" class="rightmost">'.anchor($controller_name."/view/$customer->id/width~$width", lang('common_edit'),array('class'=>'thickbox','title'=>lang($controller_name.'_update'))).'</td>';
+	$table_data_row.='</tr>'; 
+	
+	return $table_data_row;
+}
+/* end công cụ */
+/* tkdu */
+
+function get_tkdu_manage_table($customer_type,$controller)
+{
+	$CI =& get_instance();
+	$table='<table class="tablesorter" id="sortable_table">';
+	$headers = array('<input type="checkbox" id="select_all" />', 
+	lang('common_id'),
+	lang('common_name_longdk'),
+	'&nbsp');
+	$table.='<thead><tr>';
+
+	$count = 0;
+	foreach($headers as $header)
+	{
+		$count++;
+		
+		if ($count == 1)
+		{
+			$table.="<th class='leftmost'>$header</th>";
+		}
+		elseif ($count == count($headers))
+		{
+			$table.="<th class='rightmost'>$header</th>";
+		}
+		else
+		{
+			$table.="<th>$header</th>";		
+		}
+	}
+	$table.='</tr></thead><tbody>';
+	$table.=get_tkdu_manage_table_data_rows($customer_type,$controller);
+	$table.='</tbody></table>';
+	return $table;
+}
+function get_tkdu_manage_table_data_rows($var_type,$controller){
+	$CI =& get_instance();
+	$table_data_rows='';
+	
+	foreach($var_type->result() as $customer)
+	{
+		$table_data_rows.=get_tkdu_data_row($customer,$controller);
+	}
+	
+	if($var_type->num_rows()==0)
+	{
+		$table_data_rows.="<tr><td colspan='7'><div class='warning_message' style='padding:7px;'>".lang('common_no_persons_to_display')."</div></tr></tr>";
+	}
+	
+	return $table_data_rows;
+
+}
+function get_tkdu_data_row($var,$controller)
+{
+	 $CI =& get_instance();
+	$controller_name=strtolower(get_class($CI));
+	$width = $controller->get_form_width();
+	$table_data_row='<tr>';	
+	$table_data_row.="<td width='5%'><input type='checkbox' id='$var->id' name='type[]' value='".$var->id."'/></td>";
+	$table_data_row.='<td width="15%">'.$var->id.'</td>';
+	$table_data_row.='<td width="50%">'.$var->name.'</td>';	
+	$table_data_row.='<td width="5%" class="rightmost">'.anchor($controller_name."/view/$var->id/width~$width", lang('common_edit'),array('class'=>'thickbox','title'=>lang($controller_name.'_update'))).'</td>';
+	$table_data_row.='</tr>'; 
+	
+	return $table_data_row;
+}
+
+/* end tkdu */
+/*end long.dk */
+?>

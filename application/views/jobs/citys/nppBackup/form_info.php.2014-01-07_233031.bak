@@ -1,0 +1,194 @@
+<div class="field_row clearfix" style="border: none" id="status_module">
+    <div class='form_field'>
+        <?php echo form_label(lang('common_jobs_city_name').':', 'jobs_city_name',array('class'=>'required')); ?>
+        <select name='jobs_city_name'  id='jobs_city_name' required="required">
+            <?php foreach($city_info AS $key => $values): ?>
+                <?php if($values->name == $jobs_city->jobs_city_name ){?>
+                    <option value="<?php echo $values->name;?>" selected="selected"><?php echo $values->name; ?></option>
+                <?php } else{ ?>
+                    <option value="<?php echo $values->name;?>"><?php echo $values->name; ?></option>
+                <?php }endforeach; ?>
+        </select>
+    </div>
+</div>
+
+<div class="field_row clearfix" id="status_module">
+    <?php echo form_label(lang('common_jobs_city_description').':', 'jobs_city_description'); ?>
+    <div class='form_field'>
+        <?php echo form_textarea(array(
+                'name'=>'jobs_city_description',
+                'id'=>'jobs_city_description',
+                'value'=>$jobs_city->jobs_city_description,
+                'rows'=>'5',
+                'cols'=>'37')
+        );?>
+    </div>
+</div>
+
+<div class="field_row clearfix" id="status_module">
+    <?php echo form_label(lang('common_jobs_report_date').':', 'jobs_status_date'); ?>
+    <div class='form_field'>
+        <?php
+        echo form_input(array(
+                'name'=>'jobs_city_date',
+                'id'=>'jobs_city_date',
+                'value'=>$jobs_city->jobs_city_date != '1950-01-01'? date(get_date_format(),strtotime($jobs_city->jobs_city_date  != '' ? $jobs_city->jobs_city_date : date('Y-m-d'))) : ''
+            )
+        )
+        ;?>
+    </div>
+</div>
+
+<div class="field_row clearfix" style="border: none" id="status_module">
+    <div class='form_field'>
+        <?php echo form_label(lang('common_regions_person_name').':', 'jobs_name',array('class'=>'required')); ?>
+        <select name='person_id'  required="required">
+			<option value="">-- Chọn người quản lý --</option>
+            <?php foreach($name_peron_info AS $key => $values): ?>
+                <?php if($values->person_id == $jobs_city->person_id ){?>
+                    <option value="<?php echo $values->person_id;?>" selected="selected"><?php echo $values->first_name; ?></option>
+                <?php } else{ ?>
+                    <option value="<?php echo $values->person_id;?>"><?php echo $values->first_name; ?></option>
+                <?php }endforeach; ?>
+        </select>
+    </div>
+</div>
+
+<div class="field_row clearfix" style="border: none" id="status_module">
+    <div class='form_field'>
+        <?php echo form_label(lang('common_city_regions_name').':', 'jobs_name',array('class'=>'')); ?>
+        <select name='jobs_regions_id'  required="required">
+			<option value="">-- Chọn người quản lý --</option>
+            <?php foreach($regions_info AS $key => $values): ?>
+                <?php if($values->jobs_regions_id == $jobs_city->jobs_regions_id ){?>
+                    <option value="<?php echo $values->jobs_regions_id;?>" selected="selected"><?php echo $values->jobs_regions_name; ?></option>
+                <?php } else{ ?>
+                    <option value="<?php echo $values->jobs_regions_id;?>"><?php echo $values->jobs_regions_name; ?></option>
+                <?php }endforeach; ?>
+        </select>
+    </div>
+</div>
+
+<div class="field_row clearfix" id="status_module">
+    <?php echo form_label(lang('common_jobs_city_color').':', 'jobs_city_color'); ?>
+    <div class='form_field'>
+        <?php
+        echo form_input(array(
+                'name'=>'jobs_city_color',
+                'id'=>'jobs_city_color',
+                'type'=>'color',
+                'style'=>'width:20px',
+                'value'=>$jobs_city->jobs_city_color
+            )
+        )
+        ;?>
+    </div>
+</div>
+
+<style>
+    fieldset div.field_row{
+        border-bottom: none;
+    }
+
+    .field_row input{
+        border: none;
+        width: 150px;
+        height: 15px;
+    }
+    .field_row select{
+        height: 27px;
+        padding: 0;
+    }
+    .field_row label{
+        font-family: "Helvetica";
+        font-size: 13px;
+        display: inline-block;
+    }
+    #status_module input,textarea{
+        width: 220px;
+    }
+    #status_module select{
+        width: 232px;
+    }
+
+    #status_module label{
+        float: left;
+        display: inline-block;
+        width: 120px;
+    }
+
+    fieldset div.field_row{
+        border-bottom: none;
+    }
+
+    .field_row input{
+        border: none;
+        width: 150px;
+        height: 15px;
+    }
+    .field_row select{
+        height: 27px;
+        padding: 0;
+    }
+    .field_row label{
+        font-family: "Helvetica";
+        font-size: 13px;
+        display: inline-block;
+    }
+    label{
+        float: left;
+        display: inline-block;
+        width: 150px;
+    }
+    #jobs_name{
+        float: left;
+        border: 1px solid #CCC;
+        height: 27px;
+        width: 325px;
+        background-color: #F5F5F5;
+    }
+    #jobs_reports_result{
+        width: 50px;
+    }
+    #jobs_reports_name{
+        width: 313px;
+    }
+    .field_row #radio_result{
+        position: relative;
+        margin-left:  190px;
+        list-style: none;
+    }
+    .field_row #radio_result li{
+        float: left;
+    }
+    .field_row #radio_result li span{
+        display: inline-block;
+        font-weight: normal;
+        font-size: 12px;
+        float: left;
+    }
+    #jobs_reports_status{
+        margin-left: -58px;
+    }
+
+    #radio_result{
+        list-style: none;
+    }
+
+    #radio_result li{
+        margin-left: -59px;
+        margin-top: 5px;
+    }
+
+</style>
+
+
+<script type='text/javascript'>
+
+    $(document).ready(function()
+    {
+        $('#jobs_city_date').datePicker({startDate: '01-01-1960'});
+    });
+</script>
+
+
